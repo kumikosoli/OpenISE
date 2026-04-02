@@ -1,0 +1,356 @@
+Test begins now!
+
+
+Call function: void PrintSentences()
+o captain my captain
+by walt whitman
+o captain my captain our fearful trip is done
+the ship has weather'd every rack the prize we sought is won
+the port is near the bells i hear the people all exulting
+while follow eyes the steady keel the vessel grim and daring
+but o heart heart heart
+o the bleeding drops of red
+where on the deck my captain lies
+fallen cold and dead
+
+o captain my captain rise up and hear the bells
+rise upfor you the flag is flungfor you the bugle trills
+for you bouquets and ribbon'd wreathsfor you the shores acrowding
+for you they call the swaying mass their eager faces turning
+here captain dear father
+this arm beneath your head
+it is some dream that on the deck
+you've fallen cold and dead
+
+my captain does not answer his lips are pale and still
+my father does not feel my arm he has no pulse nor will
+the ship is anchor'd safe and sound its voyage closed and done
+from fearful trip the victor ship comes in with object won
+exult o shores and ring o bells
+but i with mournful tread
+walk the deck my captain lies
+fallen cold and dead
+
+Call function: void PrintWordCount()
+acrowding: 1
+all: 1
+anchor'd: 1
+and: 10
+answer: 1
+are: 1
+arm: 2
+bells: 3
+beneath: 1
+bleeding: 1
+bouquets: 1
+bugle: 1
+but: 2
+by: 1
+call: 1
+captain: 10
+closed: 1
+cold: 3
+comes: 1
+daring: 1
+dead: 3
+dear: 1
+deck: 3
+does: 2
+done: 2
+dream: 1
+drops: 1
+eager: 1
+every: 1
+exult: 1
+exulting: 1
+eyes: 1
+faces: 1
+fallen: 3
+father: 2
+fearful: 2
+feel: 1
+flag: 1
+flungfor: 1
+follow: 1
+for: 2
+from: 1
+grim: 1
+has: 2
+he: 1
+head: 1
+hear: 2
+heart: 3
+here: 1
+his: 1
+i: 2
+in: 1
+is: 6
+it: 1
+its: 1
+keel: 1
+lies: 2
+lips: 1
+mass: 1
+mournful: 1
+my: 8
+near: 1
+no: 1
+nor: 1
+not: 2
+o: 7
+object: 1
+of: 1
+on: 2
+our: 1
+pale: 1
+people: 1
+port: 1
+prize: 1
+pulse: 1
+rack: 1
+red: 1
+ribbon'd: 1
+ring: 1
+rise: 2
+safe: 1
+ship: 3
+shores: 2
+some: 1
+sought: 1
+sound: 1
+steady: 1
+still: 1
+swaying: 1
+that: 1
+the: 18
+their: 1
+they: 1
+this: 1
+tread: 1
+trills: 1
+trip: 2
+turning: 1
+up: 1
+upfor: 1
+vessel: 1
+victor: 1
+voyage: 1
+walk: 1
+walt: 1
+we: 1
+weather'd: 1
+where: 1
+while: 1
+whitman: 1
+will: 1
+with: 2
+won: 2
+wreathsfor: 1
+you: 5
+you've: 1
+your: 1
+
+Call function: void PrintTopWordContect(int n=2)
+the: 18
+{the ship}
+{rack the prize}
+{the port}
+{near the bells}
+{hear the people}
+{eyes the steady}
+{keel the vessel}
+{o the bleeding}
+{on the deck}
+{hear the bells}
+{you the flag}
+{you the bugle}
+{you the shores}
+{call the swaying}
+{on the deck}
+{the ship}
+{trip the victor}
+{walk the deck}
+
+and: 10
+{grim and daring}
+{cold and dead}
+{up and hear}
+{bouquets and ribbon'd}
+{cold and dead}
+{pale and still}
+{safe and sound}
+{closed and done}
+{shores and ring}
+{cold and dead}
+
+
+Call function: void PrintTopWordContect(int n=3)
+the: 18
+{the ship}
+{rack the prize}
+{the port}
+{near the bells}
+{hear the people}
+{eyes the steady}
+{keel the vessel}
+{o the bleeding}
+{on the deck}
+{hear the bells}
+{you the flag}
+{you the bugle}
+{you the shores}
+{call the swaying}
+{on the deck}
+{the ship}
+{trip the victor}
+{walk the deck}
+
+and: 10
+{grim and daring}
+{cold and dead}
+{up and hear}
+{bouquets and ribbon'd}
+{cold and dead}
+{pale and still}
+{safe and sound}
+{closed and done}
+{shores and ring}
+{cold and dead}
+
+captain: 10
+{o captain my}
+{o captain my}
+{my captain our}
+{my captain lies}
+{o captain my}
+{my captain rise}
+{here captain dear}
+{my captain does}
+{my captain lies}
+
+
+Call function: void PrintTopWordContect(int n=4)
+the: 18
+{the ship}
+{rack the prize}
+{the port}
+{near the bells}
+{hear the people}
+{eyes the steady}
+{keel the vessel}
+{o the bleeding}
+{on the deck}
+{hear the bells}
+{you the flag}
+{you the bugle}
+{you the shores}
+{call the swaying}
+{on the deck}
+{the ship}
+{trip the victor}
+{walk the deck}
+
+and: 10
+{grim and daring}
+{cold and dead}
+{up and hear}
+{bouquets and ribbon'd}
+{cold and dead}
+{pale and still}
+{safe and sound}
+{closed and done}
+{shores and ring}
+{cold and dead}
+
+captain: 10
+{o captain my}
+{o captain my}
+{my captain our}
+{my captain lies}
+{o captain my}
+{my captain rise}
+{here captain dear}
+{my captain does}
+{my captain lies}
+
+my: 8
+{captain my captain}
+{captain my captain}
+{deck my captain}
+{captain my captain}
+{my captain}
+{my father}
+{feel my arm}
+{deck my captain}
+
+
+Call function: void Find(const std::string& word=captain)
+The word captain occurs 10 times. Information is shown below.
+ line 1:        o captain my captain
+ line 3:        o captain my captain our fearful trip is done
+ line 9:        where on the deck my captain lies
+ line 12:       o captain my captain rise up and hear the bells
+ line 16:       here captain dear father
+ line 21:       my captain does not answer his lips are pale and still
+ line 27:       walk the deck my captain lies
+
+Call function: void Find(const std::string& word=the)
+The word the occurs 18 times. Information is shown below.
+ line 4:        the ship has weather'd every rack the prize we sought is won
+ line 5:        the port is near the bells i hear the people all exulting
+ line 6:        while follow eyes the steady keel the vessel grim and daring
+ line 8:        o the bleeding drops of red
+ line 9:        where on the deck my captain lies
+ line 12:       o captain my captain rise up and hear the bells
+ line 13:       rise upfor you the flag is flungfor you the bugle trills
+ line 14:       for you bouquets and ribbon'd wreathsfor you the shores acrowding
+ line 15:       for you they call the swaying mass their eager faces turning
+ line 18:       it is some dream that on the deck
+ line 23:       the ship is anchor'd safe and sound its voyage closed and done
+ line 24:       from fearful trip the victor ship comes in with object won
+ line 27:       walk the deck my captain lies
+
+Call function: void Find(const std::string& word=error)
+The word error doesn't exist.
+
+Call function: void Replace(const std::string& old=the, const std::string& new=a)
+Replace completed!
+
+Call function: void Replace(const std::string& old=is, const std::string& new=are)
+Replace completed!
+
+Call function: void Replace(const std::string& old=error, const std::string& new=default)
+The word error doesn't exist.
+
+Call function: void PrintSentencesAscend()
+
+
+a port are near a bells i hear a people all exulting
+a ship are anchor'd safe and sound its voyage closed and done
+a ship has weather'd every rack a prize we sought are won
+but i with mournful tread
+but o heart heart heart
+by walt whitman
+exult o shores and ring o bells
+fallen cold and dead
+fallen cold and dead
+for you bouquets and ribbon'd wreathsfor you a shores acrowding
+for you they call a swaying mass their eager faces turning
+from fearful trip a victor ship comes in with object won
+here captain dear father
+it are some dream that on a deck
+my captain does not answer his lips are pale and still
+my father does not feel my arm he has no pulse nor will
+o a bleeding drops of red
+o captain my captain
+o captain my captain our fearful trip are done
+o captain my captain rise up and hear a bells
+rise upfor you a flag are flungfor you a bugle trills
+this arm beneath your head
+walk a deck my captain lies
+where on a deck my captain lies
+while follow eyes a steady keel a vessel grim and daring
+you've fallen cold and dead
+
+
+Test ends now!

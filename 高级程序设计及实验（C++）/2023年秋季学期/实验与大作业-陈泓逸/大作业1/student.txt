@@ -1,0 +1,20 @@
+    id  name       courses
+     1  Wang  89.5  78.5  90.5
+     2    Li  84.5  93.5  75.5
+     3  Zhao  89.5  78.5  90.5
+
+student1.GetGrade(course_name[0]) = 88.5
+
+student1.GetAverageGrade() = 64.375
+
+student1.ShowGrades(): 88.5 78.5 90.5
+
+class1.ShowStudent(2): Li
+
+class1.ShowStudentByIdOrder(by decending):
+    id  name       courses
+     3  Zhao  89.5  78.5  90.5
+     2    Li  84.5  93.5  75.5
+     1  Wang  89.5  78.5  90.5
+
+StudentClass::showStudentCount(): 3

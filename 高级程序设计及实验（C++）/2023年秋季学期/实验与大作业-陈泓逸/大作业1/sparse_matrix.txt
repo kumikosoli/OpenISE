@@ -1,0 +1,68 @@
+input the number of row of matrix: 5
+input the number of column of matrix: 5
+input the number of non-zero elements of a new matrix A (5 rows and 5 columns): 4
+input the number of non-zero elements of a new matrix B (5 rows and 5 columns): 6
+
+input the non-zero elements of matrix in row and column order as the particular form below:
+row column value
+
+now input all non-zero elements of matrix A (5 rows and 5 columns) in turn:
+1 2 3
+2 4 6
+4 3 7
+4 5 8
+now input all non-zero elements of matrix B (5 rows and 5 columns) in turn:
+1 4 5
+2 1 9
+3 2 4
+3 3 3
+5 1 1
+5 5 2
+
+matrix A:
+    0    3    0    0    0
+    0    0    0    6    0
+    0    0    0    0    0
+    0    0    7    0    8
+    0    0    0    0    0
+
+matrix B:
+    0    0    0    5    0
+    9    0    0    0    0
+    0    4    3    0    0
+    0    0    0    0    0
+    1    0    0    0    2
+
+matrix C (copy from matrix A):
+    0    3    0    0    0
+    0    0    0    6    0
+    0    0    0    0    0
+    0    0    7    0    8
+    0    0    0    0    0
+
+matrix D (copy from matrix B):
+    0    0    0    5    0
+    9    0    0    0    0
+    0    4    3    0    0
+    0    0    0    0    0
+    1    0    0    0    2
+
+matrix C added by matrix B:
+    0    3    0    5    0
+    9    0    0    6    0
+    0    4    3    0    0
+    0    0    7    0    8
+    1    0    0    0    2
+
+matrix D subtracted by matrix A:
+    0   -3    0    5    0
+    9    0    0   -6    0
+    0    4    3    0    0
+    0    0   -7    0   -8
+    1    0    0    0    2
+cout<< C + D :
+    0    0    0   10    0
+   18    0    0    0    0
+    0    8    6    0    0
+    0    0    0    0    0
+    2    0    0    0    4
