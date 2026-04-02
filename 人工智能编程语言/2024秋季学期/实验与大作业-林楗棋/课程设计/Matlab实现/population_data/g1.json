@@ -1,0 +1,25 @@
+{
+  "generations": [
+    { "generation": 0, "min_value": 0.059605, "avg_value": 1.603525 },
+    { "generation": 1, "min_value": 0.011963, "avg_value": 0.405441 },
+    { "generation": 2, "min_value": 0.011963, "avg_value": 0.306988 },
+    { "generation": 3, "min_value": 0.003208, "avg_value": 0.183046 },
+    { "generation": 4, "min_value": 0.003433, "avg_value": 0.075557 },
+    { "generation": 5, "min_value": 0.003433, "avg_value": 0.040697 },
+    { "generation": 6, "min_value": 0.003433, "avg_value": 0.028804 },
+    { "generation": 7, "min_value": 0.002384, "avg_value": 0.017638 },
+    { "generation": 8, "min_value": 0.002384, "avg_value": 0.009726 },
+    { "generation": 9, "min_value": 0.002384, "avg_value": 0.009108 },
+    { "generation": 10, "min_value": 0.002384, "avg_value": 0.006020 },
+    { "generation": 11, "min_value": 0.001377, "avg_value": 0.002825 },
+    { "generation": 12, "min_value": 0.001377, "avg_value": 0.002462 },
+    { "generation": 13, "min_value": 0.001377, "avg_value": 0.002301 },
+    { "generation": 14, "min_value": 0.001377, "avg_value": 0.002241 },
+    { "generation": 15, "min_value": 0.002384, "avg_value": 0.002443 },
+    { "generation": 16, "min_value": 0.002384, "avg_value": 0.002404 },
+    { "generation": 17, "min_value": 0.002384, "avg_value": 0.002384 },
+    { "generation": 18, "min_value": 0.002384, "avg_value": 0.002384 },
+    { "generation": 19, "min_value": 0.001102, "avg_value": 0.002256 },
+    { "generation": 20, "min_value": 0.001102, "avg_value": 0.002128 }
+  ]
+}

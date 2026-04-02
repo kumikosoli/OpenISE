@@ -21,15 +21,14 @@
   - 13周
   - 14周
   - SetupCache
-  - path_planner
   - 常毅成_彭键清老师第六次作业_基础
-  - 李孟棠老师部分的作业
-  - 第七周资料
 
 - **实验**：
   - Lib
   - Robot_Experiment
   - Robot_Experiment2
+  - path_planner
+  - 第七周资料
 
 - **期末**：各学长学姐期末报告
 

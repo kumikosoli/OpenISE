@@ -23,25 +23,20 @@
 ### 已有资料
 
 - **作业**：
-  - .idea
-  - 1_个人网页部分
-  - AI_health_diet
-  - css
-  - images
-  - img
-  - inspectionProfiles
-  - miniprogram
-  - pages
-  - quickstartFunctions
-  - templates
   - 小程序作业
-  - 小程序设计进阶
-  - 常毅成blog
-  - 常毅成第一次主观题
-  - *（还有 3 项，共 18 项）*
+  - 微信小程序
+  - 第五周作业
+  - 第四周作业
 
 - **实验**：
+  - 2025年春季学期
+  - AI_health_diet
   - js
+  - miniprogram
+  - templates
+  - 小程序设计进阶
+  - 常毅成blog
+  - 微信小程序
   - 第三次实验课_html+css+js
 
 ### 资料扩展记录

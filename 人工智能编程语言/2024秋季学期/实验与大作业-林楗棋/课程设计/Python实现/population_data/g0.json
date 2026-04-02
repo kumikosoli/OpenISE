@@ -1,0 +1,59 @@
+{
+  "generations": [
+    {
+      "generation": 0,
+      "min_value": 0.01763916015625,
+      "avg_value": 1.6277315139770507
+    },
+    {
+      "generation": 1,
+      "min_value": 0.01763916015625,
+      "avg_value": 0.6333830833435059
+    },
+    {
+      "generation": 2,
+      "min_value": 0.01763916015625,
+      "avg_value": 0.44352188110351565
+    },
+    {
+      "generation": 3,
+      "min_value": 0.001682281494140625,
+      "avg_value": 0.2714836120605469
+    },
+    {
+      "generation": 4,
+      "min_value": 0.001682281494140625,
+      "avg_value": 0.13961830139160156
+    },
+    {
+      "generation": 5,
+      "min_value": 0.001682281494140625,
+      "avg_value": 0.07923469543457032
+    },
+    {
+      "generation": 6,
+      "min_value": 0.001682281494140625,
+      "avg_value": 0.06821174621582031
+    },
+    {
+      "generation": 7,
+      "min_value": 0.001682281494140625,
+      "avg_value": 0.05726966857910156
+    },
+    {
+      "generation": 8,
+      "min_value": 0.001682281494140625,
+      "avg_value": 0.043516921997070315
+    },
+    {
+      "generation": 9,
+      "min_value": 0.001682281494140625,
+      "avg_value": 0.041341400146484374
+    },
+    {
+      "generation": 10,
+      "min_value": 6.103515625e-05,
+      "avg_value": 0.03847084045410156
+    }
+  ]
+}

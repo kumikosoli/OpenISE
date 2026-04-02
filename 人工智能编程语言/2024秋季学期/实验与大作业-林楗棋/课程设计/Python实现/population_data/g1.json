@@ -1,0 +1,109 @@
+{
+  "generations": [
+    {
+      "generation": 0,
+      "min_value": 0.0813140869140625,
+      "avg_value": 1.5715520858764649
+    },
+    {
+      "generation": 1,
+      "min_value": 0.0813140869140625,
+      "avg_value": 1.309546947479248
+    },
+    {
+      "generation": 2,
+      "min_value": 0.1682281494140625,
+      "avg_value": 0.8698307991027832
+    },
+    {
+      "generation": 3,
+      "min_value": 0.14804458618164062,
+      "avg_value": 0.4188079833984375
+    },
+    {
+      "generation": 4,
+      "min_value": 0.1682281494140625,
+      "avg_value": 0.32728271484375
+    },
+    {
+      "generation": 5,
+      "min_value": 0.055850982666015625,
+      "avg_value": 0.17283477783203124
+    },
+    {
+      "generation": 6,
+      "min_value": 0.055850982666015625,
+      "avg_value": 0.1609485626220703
+    },
+    {
+      "generation": 7,
+      "min_value": 0.055850982666015625,
+      "avg_value": 0.14156608581542968
+    },
+    {
+      "generation": 8,
+      "min_value": 0.055850982666015625,
+      "avg_value": 0.14745712280273438
+    },
+    {
+      "generation": 9,
+      "min_value": 0.0244140625,
+      "avg_value": 0.1297992706298828
+    },
+    {
+      "generation": 10,
+      "min_value": 0.0244140625,
+      "avg_value": 0.08948898315429688
+    },
+    {
+      "generation": 11,
+      "min_value": 0.0244140625,
+      "avg_value": 0.05368881225585938
+    },
+    {
+      "generation": 12,
+      "min_value": 0.015625,
+      "avg_value": 0.03697700500488281
+    },
+    {
+      "generation": 13,
+      "min_value": 0.002017974853515625,
+      "avg_value": 0.023065567016601562
+    },
+    {
+      "generation": 14,
+      "min_value": 0.001682281494140625,
+      "avg_value": 0.01987800598144531
+    },
+    {
+      "generation": 15,
+      "min_value": 0.001682281494140625,
+      "avg_value": 0.016504669189453126
+    },
+    {
+      "generation": 16,
+      "min_value": 0.0,
+      "avg_value": 0.014420318603515624
+    },
+    {
+      "generation": 17,
+      "min_value": 0.0,
+      "avg_value": 0.011017990112304688
+    },
+    {
+      "generation": 18,
+      "min_value": 0.0,
+      "avg_value": 0.00563507080078125
+    },
+    {
+      "generation": 19,
+      "min_value": 0.0,
+      "avg_value": 0.0011020660400390624
+    },
+    {
+      "generation": 20,
+      "min_value": 0.0,
+      "avg_value": 0.0006900787353515625
+    }
+  ]
+}

@@ -1,0 +1,344 @@
+%!TEX program = xelatex
+% 如果你有参考文献（myref.bib），请按 xelatex -> bibtex -> xelatex*2 的顺序进行编译
+\documentclass[dvipsnames, svgnames,a4paper,11pt]{article}
+% ----------------------------------------------------
+%   中山大学物理与天文学院本科实验报告模板
+%   作者：Huanyu Shi，2019级
+%   Github：https://github.com/huanyushi/SYSU-SPA-Labreport
+%   知乎：https://www.zhihu.com/people/za-ran-zhu-fu-liu-xing
+%   Last update : 2024.10.27
+% ----------------------------------------------------
+
+\input{settings} % 导入模板的相关设置
+\usepackage{lipsum}
+
+
+%---------------------------------------------------------------------
+%	正文
+%---------------------------------------------------------------------
+
+\begin{document}
+
+
+% \infoTable{学院}{专业}{姓名}{学号}{完成时间}{年级}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{icon.png}
+    \label{fig:enter-label}
+\end{figure}
+  %—— 实验报告标题 ——
+  {\centering\songti\zihao{1} 高级程序设计实验报告\par}
+  \vspace{2em}
+{\centering\fangsong\zihao{3} 实验六\par}\
+
+    \begin{table}[H]
+        \renewcommand\arraystretch{1.7}
+        \begin{tabularx}{\textwidth}{|X|X|X|X|}
+        \hline
+        题目：& 实验六 &指导教师：& 冯国栋\\
+        \hline
+        姓名：& 林楗棋   & 学号：&24363050\\
+        \hline
+        专业班号：&202513912 &学院： &智能工程学院\\
+        \hline
+        \end{tabularx}
+    \end{table}
+
+
+
+
+\tableofcontents
+\clearpage
+
+\section{实验目的与设计思路}
+\subsection{实验目的}
+\begin{question}
+本次实验要求实现多个字符串处理函数，具体要求如下：
+\begin{enumerate}
+    \item 编写字符串过滤函数void stringFilter(const string \&inputStr, string \&outStr)；\\
+    规则如下：
+    \begin{itemize}
+        \item  字符串中多个相同的字符，将非首次出现的字符过滤掉。比如字符串“abacacde”过滤结果为“abcde”；
+        \item 示例 输入：“deefd”， “afafafaf” ，“pppppppp”输出：“def”， “af”，“p”。
+    \end{itemize}
+    \item 编写字符串压缩函数，将字符串中连续重复字母压缩void stringZip(const string \&inputStr, string \&outStr)；\\
+    规则如下：
+    \begin{itemize}
+        \item 仅压缩连续重复出现的字符。比如"abcbc"无连续重复字符，压缩为"abcbc".
+        \item 压缩字段的格式为"字符重复的次数+字符"。例如：字符串"xxxyyyyyyz"压缩为"3x6yz"
+        \item 示例 输入：“cccddecc” ，“adef”，“pppppppp”输出：“3c2de2c”，“adef”，“8p”
+    \end{itemize}
+    \item 编写一个字符串解压程序，实现2中反向功能void stringUnzip(const string \&inputStr, string \&outStr)；\\
+    输入：“8p” 输出：“pppppppp”       
+\end{enumerate}
+\end{question}
+\subsection{设计思路}
+本次实验要求比较简单，主要是实现字符串处理的三个函数，依次讲解这三个函数的设计思路。
+\subsubsection{stringFilter设计思路}
+本函数的要求是筛除字符串中重复出现的字符，保留首次出现的字符。
+对于这个要求，首先想到的方法是采用两个指针遍历，如果发现重复字符就删除，否则就加入输出字符串中。
+但是这样时间复杂度就是$O(n^2)$，效率较低。分析瓶颈发现是查找重复字符的过程非常繁琐，每一次都要遍历字符串，造成了时间复杂度的提升。\\
+因此，改进思路是使用哈希表（unordered\_set）来存储已经出现过的字符，这样每次查找是否重复的时间复杂度就降低到$O(1)$，整体时间复杂度降为$O(n)$。
+但是空间复杂度提升到$O(m)$，m为字符种类数。造成如果字符种类过多，空间开销较大。但是权衡时间复杂度，认为是可以接受的。
+实际上这道题和Leetcode中的找字符串中的第一个唯一字符\footnote{https://leetcode.cn/problems/first-unique-character-in-a-string/description/}思路类似。\\
+考虑边界条件：本题的边界条件较少，主要考虑空字符串的情况，直接返回空字符串即可，同时在函数开头清空outStr，防止残留数据。
+\subsubsection{stringZip设计思路}
+本函数的要求是将字符串中连续重复出现的字符进行压缩，压缩格式为“重复次数+字符”。\\
+本题也比较简单，直接遍历字符串，对于每一个字符，用while循环统计其连续出现的次数count，然后将count和字符加入输出字符串中即可。
+同时需要更新指针跳过重复的字符，防止多次统计\\
+考虑边界条件：同样需要考虑空字符串的情况，直接返回空字符串即可，同时在函数开头清空outStr，防止残留数据。
+\subsubsection{stringUnzip设计思路}
+本函数的要求是将压缩后的字符串进行解压，恢复为原字符串。\\
+本题有特殊的情况需要考虑：压缩字符串中数字可能不止一位数，对于如'12'这种两位数，需要将整个数字解析出来，才能正确解压。
+因此，遍历字符串时，如果遇到数字字符，就需要用一个while循环将连续的数字字符解析为一个完整的数字count，然后读取下一个字符char，将char重复count次加入输出字符串中。\\
+考虑边界条件：同样需要考虑空字符串的情况，直接返回空字符串即可，同时在函数开头清空outStr，防止残留数据。
+另外还需要考虑压缩字符串格式错误的情况，比如数字后面没有字符，这种情况可以选择忽略或者报错，这里选择忽略。
+\section{核心代码与测试结果}
+\subsection{核心代码}
+由于比较短，下面给出三个字符串处理函数的全部代码实现。
+\begin{lstlisting}[style=cppstyle, caption=,breaklines=true]
+#include <iostream>
+#include <string>
+#include <unordered_set>
+void stringFilter(const std::string &inputStr, std::string &outStr) {
+    outStr.clear();
+    if (inputStr.empty()) { return; }
+    std::unordered_set<char> seenChars;
+    for (char c : inputStr) {
+        if (!seenChars.count(c)) {
+            outStr += c;
+            seenChars.insert(c);
+}}}
+
+void stringZip(const std::string &inputStr, std::string &outStr) {
+    outStr.clear();
+    if (inputStr.empty()) { return; }
+    for (int i = 0; i < inputStr.size();i++) {
+        char currentChar = inputStr[i];
+        int count = 1;
+        while (i + 1 < inputStr.size() && inputStr[i + 1] == currentChar) {
+            count++;
+            i++;
+        }
+        if (count > 1) {
+            outStr.append(std::to_string(count));
+        }
+        outStr += currentChar;
+}}
+
+void stringUnzip(const std::string &inputStr, std::string &outStr) {
+    outStr.clear();
+    if (inputStr.empty()) { return; }
+    int size = inputStr.size();
+    for (int i = 0; i < size; i++) {
+        if (isdigit(inputStr[i]) && i + 1 < size) {
+            int count = 0, j = i;
+            while (j < size && isdigit(inputStr[j])) {
+                count = count * 10 + inputStr[j] - '0';
+                j++;
+            }
+            char str = inputStr[j];
+            outStr.append(count, str);
+            i = j; 
+        } else {
+            outStr += inputStr[i];
+}}}
+\end{lstlisting}
+\subsection{测试结果}
+对于测试部分，本实验采用自动化测试方案————\textbf{Google Test}\footnote{https://google.github.io/googletest/primer.html}。Google Test有简易的基础语法如TEST()、EXPECT\_EQ()、ASSERT\_TRUE()，可以以此验证程序是否符合预期。\\
+同时采用自动化测试，可以:
+\begin{enumerate}
+    \item 自动检测程序逻辑错误，减少人工测试工作量；
+    \item 将测试与实现分离，提高程序的可维护性和可靠性。
+\end{enumerate}
+下面简单列一些测试案例以供参考，完整的测试案例参见附录。
+\begin{lstlisting}[style=cppstyle, caption=测试案例片段,breaklines=true]
+TEST(StringFilter, test) {
+	std::string out;
+	stringFilter("deefd", out);
+	EXPECT_EQ(out, "def");
+	stringFilter("afafafaf", out);
+	EXPECT_EQ(out, "af");
+	stringFilter("pppppppp", out);
+	EXPECT_EQ(out, "p");
+}
+\end{lstlisting}
+限于篇幅不完全列出所有测试代码，得到测试结果为：
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{result.png}
+    \caption{测试结果}
+\end{figure}
+可以认为程序符合预期，是正确的。
+\section{心得体会}
+完成了本实验的要求，我有以下感悟：
+\begin{itemize}
+    \item 多考虑边界情况，防止程序在边界情况下崩溃。
+\end{itemize}
+\section{加分项}
+本次实验除完成基本功能外，还在以下方面进行了扩展与优化，我认为可以视作加分项：
+\begin{itemize}
+    \item 考虑函数的时间复杂度和空间复杂度并进行优化；
+    \item 采用自动化测试（Google Test）：使用 Google Test 编写系统化测试用例，实现了对各函数逻辑的自动
+验证，体现了工程化测试思维；
+    \item 接口与实现分离设计：将函数的声明与定义分别放置于 .h 和 .cpp 文件中，遵循模块化与可维护性原则。
+\end{itemize}
+
+
+
+\clearpage
+\section{附录：全部代码}
+\begin{lstlisting}[style=cppstyle, caption=utils.h,breaklines=true]
+#include <string>
+#ifndef UTILS_H
+#define UTILS_H
+void stringFilter(const std::string &inputStr, std::string &outStr);
+void stringZip(const std::string &inputStr, std::string &outStr);
+void stringUnzip(const std::string &inputStr, std::string &outStr);
+#endif
+\end{lstlisting}
+\begin{lstlisting}[style=cppstyle, caption=utils.cpp,breaklines=true]
+#include <iostream>
+#include <string>
+#include <unordered_set>
+
+/* 
+* 编写字符串过滤函数规则如下：
+* 字符串中多个相同的字符，将非首次出现的字符过滤掉。
+* 比如字符串“abacacde”过滤结果为“abcde”。
+*/
+void stringFilter(const std::string &inputStr, std::string &outStr) {
+    outStr.clear();
+    if (inputStr.empty()) {
+        return;
+    }
+    std::unordered_set<char> seenChars;
+    for (char c : inputStr) {
+        if (!seenChars.count(c)) {
+            outStr += c;
+            seenChars.insert(c);
+        }
+    }
+}
+
+/*
+编写字符串压缩函数，将字符串中连续重复字母压缩。规则如下：
+* 1. 仅压缩连续重复出现的字符。比如"abcbc"无连续重复字符，压缩为"abcbc".
+* 2. 压缩字段的格式为"字符重复的次数+字符"。例如：字符串"xxxyyyyyyz"压缩为"3x6yz"
+* 示例 输入：“cccddecc” ，“adef”，“pppppppp”输出：“3c2de2c”，“adef”，“8p”
+*/
+void stringZip(const std::string &inputStr, std::string &outStr) {
+    outStr.clear();
+    if (inputStr.empty()) {
+        return;
+    }
+    for (int i = 0; i < inputStr.size();i++) {
+        char currentChar = inputStr[i];
+        int count = 1;
+        while (i + 1 < inputStr.size() && inputStr[i + 1] == currentChar) {
+            count++;
+            i++;
+        }
+        if (count > 1) {
+            outStr.append(std::to_string(count));
+        }
+        outStr += currentChar;
+    }
+}
+
+
+/*
+* 编写一个字符串解压程序，实现2中反向功能；
+* 输入：“8p” 输出：“pppppppp”
+*/
+void stringUnzip(const std::string &inputStr, std::string &outStr) {
+    outStr.clear();
+    if (inputStr.empty()) {
+        return;
+    }
+    int size = inputStr.size();
+    for (int i = 0; i < size; i++) {
+        if (isdigit(inputStr[i]) && i + 1 < size) {
+            int count = 0, j = i;
+            while (j < size && isdigit(inputStr[j])) {
+                count = count * 10 + inputStr[j] - '0';
+                j++;
+            }
+            char str = inputStr[j];
+            outStr.append(count, str);
+            i = j; 
+        } else {
+            outStr += inputStr[i];
+        }
+    }
+}
+\end{lstlisting}
+\textbf{注：}要查看检测信息，需要文件结构满足以下结构：
+\begin{lstlisting}[style=bashstyle, caption=, breaklines=true]
+lab6/
+|- utils.h
+|- utils.cpp
+|- main.cpp
+\end{lstlisting}
+随后在终端输入
+\begin{lstlisting}[style=bashstyle, caption=, breaklines=true]
+$ g++ -std=c++17 -I. utils.cpp main.cpp -lgtest -lpthread -o test_bin
+$ ./test_bin
+\end{lstlisting}
+\begin{lstlisting}[style=cppstyle, caption=utils.cpp,breaklines=true]
+#include <gtest/gtest.h>
+#include "utils.h"
+
+TEST(StringFilter, test) {
+	std::string out;
+	stringFilter("deefd", out);
+	EXPECT_EQ(out, "def");
+
+	stringFilter("afafafaf", out);
+	EXPECT_EQ(out, "af");
+
+	stringFilter("pppppppp", out);
+	EXPECT_EQ(out, "p");
+}
+
+TEST(StringZip, test) {
+	std::string out;
+	stringZip("cccddecc", out);
+	EXPECT_EQ(out, "3c2de2c");
+
+	stringZip("adef", out);
+	EXPECT_EQ(out, "adef");
+
+	stringZip("pppppppp", out);
+	EXPECT_EQ(out, "8p");
+}
+
+TEST(StringUnzip, test) {
+	std::string out;
+	stringUnzip("8p", out);
+	EXPECT_EQ(out, std::string(8, 'p'));
+
+	stringUnzip("3c2de2c", out);
+	EXPECT_EQ(out, "cccddecc");
+
+	stringUnzip("12x3y", out);
+	EXPECT_EQ(out, std::string(12, 'x') + std::string(3, 'y'));
+}
+
+int main(int argc, char **argv) {
+	::testing::InitGoogleTest(&argc, argv);
+	return RUN_ALL_TESTS();
+}
+
+// int main() {
+//     std::string out;
+//     stringFilter("deefd", out); 
+//     std::cout << out << std::endl;
+//     stringFilter("afafafaf", out);
+//     std::cout << out << std::endl;
+// 	stringFilter("pppppppp", out);
+//     std::cout << out <<std::endl;
+// }
+\end{lstlisting}
+
+\end{document}

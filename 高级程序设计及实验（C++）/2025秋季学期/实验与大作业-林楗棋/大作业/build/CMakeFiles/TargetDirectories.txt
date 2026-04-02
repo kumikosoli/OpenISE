@@ -1,0 +1,5 @@
+/home/matrix/homework/Cpp/大作业/build/CMakeFiles/student_manager.dir
+/home/matrix/homework/Cpp/大作业/build/CMakeFiles/run_tests.dir
+/home/matrix/homework/Cpp/大作业/build/CMakeFiles/test.dir
+/home/matrix/homework/Cpp/大作业/build/CMakeFiles/edit_cache.dir
+/home/matrix/homework/Cpp/大作业/build/CMakeFiles/rebuild_cache.dir

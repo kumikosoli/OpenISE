@@ -1,0 +1,19 @@
+{
+    "settings": {
+        "masterPubToGraduate": 1,
+        "phdPubToGraduate": 2,
+        "ungraCreditToGraduate": 155
+    },
+    "students": [
+        {
+            "age": 19,
+            "classInfo": [],
+            "gender": "男",
+            "id": 1111,
+            "major": "智能科学与技术",
+            "name": "张三",
+            "role": "Undergraduate",
+            "year": 2
+        }
+    ]
+}
