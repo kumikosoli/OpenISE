@@ -16,4 +16,4 @@
 - **文件索引**：
   - 文档资料：`0.Introduction_ 2023 Franz Edelman Award for Achievement in Advanced Analytics, Operations Research, and Management Science.pdf`、`运筹学期末复习.docx`
 
-表述因repo开源性质受限，有相关课程问题、改进建议等欢迎联系笔者微信：Jerusalem1126
+⭐️表述因repo开源性质受限，有相关课程问题、改进建议等欢迎联系笔者微信：Jerusalem1126
