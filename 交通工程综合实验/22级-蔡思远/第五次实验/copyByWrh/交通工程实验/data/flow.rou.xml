@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- generated on 2025-01-19 11:51:17 by Eclipse SUMO netedit Version 1.21.0 -->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd"> 
+<!-- VTypes --> 
+<vType id="bus" vClass="bus" color="white"/>
+ <vType id="passenger" vClass="passenger"/> 
+ <vType id="trailer" vClass="trailer" color="red"/> 
+ <vType id="truck" vClass="truck" color="green"/> 
+ <vType id="person" vClass="pedestrian" color="cyan"/>
+<!-- Routes --> 
+<route id="e-n" edges="E_i EN_out N_o"/>
+<route id="e-s" edges="E_i E_in N_out S_o"/>
+<route id="e-w" edges="E_i E_in E_out W_o"/> 
+<route id="n-e" edges="N_i N_in W_out W_out1 E_o"/>
+<route id="n-s" edges="N_i N_in N_out S_o"/> 
+<route id="n-w" edges="N_i NW_out W_o"/>
+<route id="s-e" edges="S_i S_in1 SE_out W_out1 E_o"/>
+<route id="s-n" edges="S_i S_in1 S_in S_out N_o"/>
+<route id="s-w" edges="S_in1 S_in E_out W_o"/> 
+<route id="w-e" edges="W_i W_in W_out W_out1 E_o"/> 
+<route id="w-n" edges="W_i W_in S_out N_o"/> 
+<route id="w-s" edges="W_i WS_out S_o"/>
+<!-- Vehicles, persons and containers (sorted by depart) --> 
+<flow id="n-e-big" type="trailer" begin="0.00" departLane="best" from="N_i" to="E_o" end="3600.00" vehsPerHour="5"/> 
+<flow id="n-e-medium" type="truck" begin="0.00" departLane="best" from="N_i" to="E_o" end="3600.00" vehsPerHour="19"/>
+<flow id="n-e-small" type="passenger" begin="0.00" departLane="best" from="N_i" to="E_o" end="3600.00" vehsPerHour="118"/>
+<flow id="n-s-big" type="trailer" begin="0.00" departLane="best" from="N_i" to="S_o" end="3600.00" vehsPerHour="5"/> 
+<flow id="n-s-medium" type="truck" begin="0.00" departLane="best" from="N_i" to="S_o" end="3600.00" vehsPerHour="14"/>
+<flow id="n-s-small" type="passenger" begin="0.00" departLane="best" from="N_i" to="S_o" end="3600.00" vehsPerHour="169"/> 
+<flow id="n-s-bus" type="bus" begin="0.00" departLane="best" from="N_i" to="S_o" end="3600.00" vehsPerHour="2"/> 
+<flow id="n-w-big" type="trailer" begin="0.00" departLane="best" from="N_i" to="W_o" end="3600.00" vehsPerHour="2"/> 
+<flow id="n-w-medium" type="truck" begin="0.00" departLane="best" from="N_i" to="W_o" end="3600.00" vehsPerHour="5"/> 
+<flow id="n-w-small" type="passenger" begin="0.00" departLane="best" from="N_i" to="W_o" end="3600.00" vehsPerHour="45"/> 
+<flow id="n-w-bus" type="bus" begin="0.00" departLane="best" from="N_i" to="W_o" end="3600.00" vehsPerHour="2"/>
+<flow id="e-s-big" type="trailer" begin="0.00" departLane="best" from="E_i" to="S_o" end="3600.00" vehsPerHour="36"/> 
+<flow id="e-s-medium" type="truck" begin="0.00" departLane="best" from="E_i" to="S_o" end="3600.00" vehsPerHour="41"/> 
+<flow id="e-s-small" type="passenger" begin="0.00" departLane="best" from="E_i" to="S_o" end="3600.00" vehsPerHour="324"/> 
+<flow id="e-w-big" type="trailer" begin="0.00" departLane="best" from="E_i" to="W_o" end="3600.00" vehsPerHour="73"/> 
+<flow id="e-w-medium" type="truck" begin="0.00" departLane="best" from="E_i" to="W_o" end="3600.00" vehsPerHour="131"/> 
+<flow id="e-w-small" type="passenger" begin="0.00" departLane="best" from="E_i" to="W_o" end="3600.00" vehsPerHour="658"/> 
+<flow id="e-n-big" type="trailer" begin="0.00" departLane="best" from="E_i" to="N_o" end="3600.00" vehsPerHour="3"/>
+<flow id="e-n-medium" type="truck" begin="0.00" departLane="best" from="E_i" to="N_o" end="3600.00" vehsPerHour="16"/> 
+<flow id="e-n-small" type="passenger" begin="0.00" departLane="best" from="E_i" to="N_o" end="3600.00" vehsPerHour="25"/>
+<flow id="s-w-big" type="trailer" begin="0.00" departLane="best" from="S_i" to="W_o" end="3600.00" vehsPerHour="16"/> 
+<flow id="s-w-medium" type="truck" begin="0.00" departLane="best" from="S_i" to="W_o" end="3600.00" vehsPerHour="19"/> 
+<flow id="s-w-small" type="passenger" begin="0.00" departLane="best" from="S_i" to="W_o" end="3600.00" vehsPerHour="93"/> 
+<flow id="s-w-bus" type="bus" begin="0.00" departLane="best" from="S_i" to="W_o" end="3600.00" vehsPerHour="6"/> 
+<flow id="s-n-big" type="trailer" begin="0.00" departLane="best" from="S_i" to="N_o" end="3600.00" vehsPerHour="6"/> 
+<flow id="s-n-medium" type="truck" begin="0.00" departLane="best" from="S_i" to="N_o" end="3600.00" vehsPerHour="19"/> 
+<flow id="s-n-small" type="passenger" begin="0.00" departLane="best" from="S_i" to="N_o" end="3600.00" vehsPerHour="196"/> 
+<flow id="s-n-bus" type="bus" begin="0.00" departLane="best" from="S_i" to="N_o" end="3600.00" vehsPerHour="12"/> 
+<flow id="s-e-big" type="trailer" begin="0.00" departLane="best" from="S_i" to="E_o" end="3600.00" vehsPerHour="6"/> 
+<flow id="s-e-medium" type="truck" begin="0.00" departLane="best" from="S_i" to="E_o" end="3600.00" vehsPerHour="57"/> 
+<flow id="s-e-small" type="passenger" begin="0.00" departLane="best" from="S_i" to="E_o" end="3600.00" vehsPerHour="279"/> 
+<flow id="s-e-bus" type="bus" begin="0.00" departLane="best" from="S_i" to="E_o" end="3600.00" vehsPerHour="6"/>
+<flow id="w-n-medium" type="truck" begin="0.00" departLane="best" from="W_i" to="N_o" end="3600.00" vehsPerHour="6"/> 
+<flow id="w-n-small" type="passenger" begin="0.00" departLane="best" from="W_i" to="N_o" end="3600.00" vehsPerHour="67"/> 
+<flow id="w-n-bus" type="bus" begin="0.00" departLane="best" from="W_i" to="N_o" end="3600.00" vehsPerHour="6"/> 
+<flow id="w-e-big" type="trailer" begin="0.00" departLane="best" from="W_i" to="E_o" end="3600.00" vehsPerHour="28"/> 
+<flow id="w-e-medium" type="truck" begin="0.00" departLane="best" from="W_i" to="E_o" end="3600.00" vehsPerHour="122"/> 
+<flow id="w-e-small" type="passenger" begin="0.00" departLane="best" from="W_i" to="E_o" end="3600.00" vehsPerHour="568"/> 
+<flow id="w-s-medium" type="truck" begin="0.00" departLane="best" from="W_i" to="S_o" end="3600.00" vehsPerHour="12"/>
+<flow id="w-s-small" type="passenger" begin="0.00" departLane="best" from="W_i" to="S_o" end="3600.00" vehsPerHour="70"/>
+<!--Persons--> 
+<personFlow id="n-person" begin="0.00" end="3600" vehsPerHour="299" type="person"> 
+<walk from="NW_walk" to="EN_walk"/> 
+</personFlow> 
+<personFlow id="e-person" begin="0.00" end="3600" vehsPerHour="173" type="person"> 
+<walk from="EN_walk" to="SE_walk"/> 
+</personFlow> 
+<personFlow id="s-person" begin="0.00" end="3600" vehsPerHour="202" type="person"> 
+<walk from="SE_walk" to="WS_walk"/> 
+</personFlow> 
+<personFlow id="w-person" begin="0.00" end="3600" vehsPerHour="57" type="person"> 
+<walk from="WS_walk" to="NW_walk"/> 
+</personFlow> 
+</routes>

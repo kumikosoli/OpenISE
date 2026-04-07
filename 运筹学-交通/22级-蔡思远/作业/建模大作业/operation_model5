@@ -1,0 +1,797 @@
+\* Maximize_Influence *\
+Maximize
+OBJ: 463 1001_text_num + 2030000 1002_video_num + 1234 1011_text_num
+ + 290000 1012_video_num + 498 101_text_num + 3150 1021_text_num
+ + 1010000 1021_video_num + 1350000 1022_video_num + 46000 102_video_num
+ + 270000 1032_video_num + 500 1041_text_num + 270000 1041_video_num
+ + 1071.666667 1051_text_num + 11860.8 1061_text_num + 7562.5 1062_text_num
+ + 2480 1071_text_num + 2911 1072_text_num + 3897760 1072_video_num
+ + 619.5 1081_text_num + 1818250 1081_video_num + 1740 1082_text_num
+ + 110700 1082_video_num + 11026 1091_text_num + 5133 1092_text_num
+ + 9088.2 1101_text_num + 8094000 1101_video_num + 4990 1102_text_num
+ + 3425700 1102_video_num + 6051.769231 1111_text_num + 6373 1112_text_num
+ + 489 111_text_num + 10312.33333 1121_text_num + 5215.75 1122_text_num
+ + 392000 112_video_num + 1242 1131_text_num + 1532 1132_text_num
+ + 4786 1141_text_num + 5117 1142_text_num + 19684 1151_text_num
+ + 5762.4 1152_text_num + 6488.5 1161_text_num + 995000 1161_video_num
+ + 926703.3333 1162_video_num + 4441000 1171_video_num + 8076 1172_text_num
+ + 520600 1172_video_num + 8792.285714 1181_text_num + 7618.35 1182_text_num
+ + 10669.2 1191_text_num + 1260316.667 1191_video_num + 3917.125 1192_text_num
+ + 338240 1192_video_num + 3147 11_text_num + 2646.5 1201_text_num
+ + 66106.66667 1202_video_num + 60032 1211_text_num + 2055000 1211_video_num
+ + 1615 1212_text_num + 170000 121_video_num + 5498.166667 1231_text_num
+ + 245500 1231_video_num + 1184 1241_text_num + 813621.875 1261_video_num
+ + 1055 1271_text_num + 102000 1271_video_num + 9127 1281_text_num
+ + 1736 1282_text_num + 1847 1291_text_num + 3686.333333 1292_text_num
+ + 182000 12_video_num + 3292.666667 1302_text_num
+ + 822383.3333 1302_video_num + 2742 1311_text_num + 3024 1312_text_num
+ + 162960 1312_video_num + 11000 1321_text_num + 2091000 1321_video_num
+ + 2094 1322_text_num + 657500 1322_video_num + 362700 132_video_num
+ + 1245 1331_text_num + 700 141_text_num + 592000 141_video_num
+ + 496 142_text_num + 253000 142_video_num + 258000 151_video_num
+ + 533.2 161_text_num + 285300 162_video_num + 1128 171_text_num
+ + 255000 171_video_num + 715000 172_video_num + 976000 181_video_num
+ + 500000 182_video_num + 350000 191_video_num + 686 201_text_num
+ + 723000 201_video_num + 189000 202_video_num + 1006 211_text_num
+ + 774 212_text_num + 392000 212_video_num + 1387 21_text_num
+ + 277500 21_video_num + 213000 221_video_num + 7900 222_video_num
+ + 1073 22_text_num + 340000 22_video_num + 440 231_text_num
+ + 780000 231_video_num + 587000 232_video_num + 2300 241_text_num
+ + 221000 241_video_num + 356 242_text_num + 999000 251_video_num
+ + 1408 252_text_num + 430000 252_video_num + 409000 262_video_num
+ + 1901 271_text_num + 439000 271_video_num + 433000 281_video_num
+ + 2827 282_text_num + 274000 291_video_num + 2417 292_text_num
+ + 900 302_text_num + 815000 302_video_num + 2653 312_text_num
+ + 590000 312_video_num + 1969500 31_video_num + 1289 321_text_num
+ + 553000 321_video_num + 2935 322_text_num + 1217000 322_video_num
+ + 201800 32_video_num + 1191000 332_video_num + 10868 341_text_num
+ + 3180000 342_video_num + 812000 351_video_num + 1196000 362_video_num
+ + 2099 371_text_num + 750000 372_video_num + 964000 381_video_num
+ + 940000 382_video_num + 778 391_text_num + 2490000 391_video_num
+ + 1240000 392_video_num + 3880000 422_video_num + 1065800 42_video_num
+ + 2893 441_text_num + 316000 442_video_num + 716000 451_video_num
+ + 591 452_text_num + 720000 462_video_num + 2050 471_text_num
+ + 2460000 481_video_num + 2910000 482_video_num + 3605 491_text_num
+ + 774000 491_video_num + 3670000 492_video_num + 2148 501_text_num
+ + 875000 502_video_num + 374000 511_video_num + 667000 512_video_num
+ + 360.9 51_text_num + 142500 51_video_num + 2400 521_text_num
+ + 2000000 521_video_num + 1145000 522_video_num + 254.5 52_text_num
+ + 464000 52_video_num + 1300 531_text_num + 42100 532_video_num
+ + 470 541_text_num + 600000 541_video_num + 47000 542_video_num
+ + 7140000 551_video_num + 204000 552_video_num + 400 571_text_num
+ + 1160000 572_video_num + 500 581_text_num + 1200 591_text_num
+ + 4483 611_text_num + 539.3 61_text_num + 857 62_text_num + 770 641_text_num
+ + 90000 641_video_num + 3230000 661_video_num + 330000 671_video_num
+ + 600 681_text_num + 26700 682_video_num + 91500 691_video_num
+ + 616 71_text_num + 1832000 71_video_num + 2800 721_text_num
+ + 730000 721_video_num + 646000 72_video_num + 2570000 741_video_num
+ + 30000 742_video_num + 650 761_text_num + 270 771_text_num
+ + 56800 772_video_num + 109000 781_video_num + 35200 802_video_num
+ + 605 811_text_num + 1718200 81_video_num + 216200 822_video_num
+ + 161000 82_video_num + 4430000 831_video_num + 1818 832_text_num
+ + 2450000 832_video_num + 5367 841_text_num + 230000 841_video_num
+ + 7578 842_text_num + 350000 842_video_num + 210000 851_text_num
+ + 751 852_text_num + 320000 852_video_num + 1560 861_text_num
+ + 24639 871_text_num + 2004 872_text_num + 580000 872_video_num
+ + 220000 882_video_num + 2652 891_text_num + 400000 892_video_num
+ + 1018 901_text_num + 6219 911_text_num + 240000 911_video_num
+ + 938 912_text_num + 490000 912_video_num + 98000 91_video_num
+ + 2807 921_text_num + 2240000 922_video_num + 99800 92_video_num
+ + 562 931_text_num + 20000 931_video_num + 320000 932_video_num
+ + 2090000 942_video_num + 402 951_text_num + 282 952_text_num
+ + 250000 952_video_num + 280000 961_video_num + 233 962_text_num
+ + 250000 962_video_num + 1141 971_text_num + 1050000 972_video_num
+ + 1650000 982_video_num + 625 991_text_num + 500000 991_video_num
+Subject To
+_C1: 42400 1001_text_num + 233200 1001_video_num + 29680 1002_text_num
+ + 148400 1002_video_num + 43400 1011_text_num + 238700 1011_video_num
+ + 30380 1012_text_num + 151900 1012_video_num + 29760 101_text_num
+ + 163680 101_video_num + 44200 1021_text_num + 243100 1021_video_num
+ + 30940 1022_text_num + 154700 1022_video_num + 20832 102_text_num
+ + 104160 102_video_num + 43600 1031_text_num + 239800 1031_video_num
+ + 30520 1032_text_num + 152600 1032_video_num + 43800 1041_text_num
+ + 240900 1041_video_num + 30660 1042_text_num + 153300 1042_video_num
+ + 101400 1051_text_num + 557700 1051_video_num + 70980 1052_text_num
+ + 354900 1052_video_num + 106600 1061_text_num + 586300 1061_video_num
+ + 74620 1062_text_num + 373100 1062_video_num + 107800 1071_text_num
+ + 592900 1071_video_num + 75460 1072_text_num + 377300 1072_video_num
+ + 105340 1081_text_num + 579370 1081_video_num + 73738 1082_text_num
+ + 368690 1082_video_num + 111360 1091_text_num + 612480 1091_video_num
+ + 77952 1092_text_num + 389760 1092_video_num + 116200 1101_text_num
+ + 639100 1101_video_num + 81340 1102_text_num + 406700 1102_video_num
+ + 118200 1111_text_num + 650100 1111_video_num + 82740 1112_text_num
+ + 413700 1112_video_num + 30600 111_text_num + 168300 111_video_num
+ + 135600 1121_text_num + 745800 1121_video_num + 94920 1122_text_num
+ + 474600 1122_video_num + 21420 112_text_num + 107100 112_video_num
+ + 140000 1131_text_num + 770000 1131_video_num + 98000 1132_text_num
+ + 490000 1132_video_num + 147400 1141_text_num + 810700 1141_video_num
+ + 103180 1142_text_num + 515900 1142_video_num + 153480 1151_text_num
+ + 844140 1151_video_num + 107436 1152_text_num + 537180 1152_video_num
+ + 157400 1161_text_num + 865700 1161_video_num + 110180 1162_text_num
+ + 550900 1162_video_num + 162400 1171_text_num + 893200 1171_video_num
+ + 113680 1172_text_num + 568400 1172_video_num + 169260 1181_text_num
+ + 930930 1181_video_num + 118482 1182_text_num + 592410 1182_video_num
+ + 172960 1191_text_num + 951280 1191_video_num + 121072 1192_text_num
+ + 605360 1192_video_num + 36800 11_text_num + 202400 11_video_num
+ + 65000 1201_text_num + 357500 1201_video_num + 45500 1202_text_num
+ + 227500 1202_video_num + 65060 1211_text_num + 357830 1211_video_num
+ + 45542 1212_text_num + 227710 1212_video_num + 30340 121_text_num
+ + 166870 121_video_num + 68800 1221_text_num + 378400 1221_video_num
+ + 48160 1222_text_num + 240800 1222_video_num + 21238 122_text_num
+ + 106190 122_video_num + 66860 1231_text_num + 367730 1231_video_num
+ + 46802 1232_text_num + 234010 1232_video_num + 67000 1241_text_num
+ + 368500 1241_video_num + 46900 1242_text_num + 234500 1242_video_num
+ + 67280 1251_text_num + 370040 1251_video_num + 47096 1252_text_num
+ + 235480 1252_video_num + 67900 1261_text_num + 373450 1261_video_num
+ + 47530 1262_text_num + 237650 1262_video_num + 68580 1271_text_num
+ + 377190 1271_video_num + 48006 1272_text_num + 240030 1272_video_num
+ + 68040 1281_text_num + 374220 1281_video_num + 47628 1282_text_num
+ + 238140 1282_video_num + 68640 1291_text_num + 377520 1291_video_num
+ + 48048 1292_text_num + 240240 1292_video_num + 25760 12_text_num
+ + 128800 12_video_num + 68840 1301_text_num + 378620 1301_video_num
+ + 48188 1302_text_num + 240940 1302_video_num + 69220 1311_text_num
+ + 380710 1311_video_num + 48454 1312_text_num + 242270 1312_video_num
+ + 30600 131_text_num + 168300 131_video_num + 70240 1321_text_num
+ + 386320 1321_video_num + 49168 1322_text_num + 245840 1322_video_num
+ + 21420 132_text_num + 107100 132_video_num + 70200 1331_text_num
+ + 386100 1331_video_num + 49140 1332_text_num + 245700 1332_video_num
+ + 29300 141_text_num + 161150 141_video_num + 20510 142_text_num
+ + 102550 142_video_num + 29400 151_text_num + 161700 151_video_num
+ + 20580 152_text_num + 102900 152_video_num + 29820 161_text_num
+ + 164010 161_video_num + 20874 162_text_num + 104370 162_video_num
+ + 30000 171_text_num + 165000 171_video_num + 21000 172_text_num
+ + 105000 172_video_num + 29940 181_text_num + 164670 181_video_num
+ + 20958 182_text_num + 104790 182_video_num + 29740 191_text_num
+ + 163570 191_video_num + 20818 192_text_num + 104090 192_video_num
+ + 30020 201_text_num + 165110 201_video_num + 21014 202_text_num
+ + 105070 202_video_num + 30440 211_text_num + 167420 211_video_num
+ + 21308 212_text_num + 106540 212_video_num + 37000 21_text_num
+ + 203500 21_video_num + 30360 221_text_num + 166980 221_video_num
+ + 21252 222_text_num + 106260 222_video_num + 25900 22_text_num
+ + 129500 22_video_num + 46200 231_text_num + 254100 231_video_num
+ + 32340 232_text_num + 161700 232_video_num + 44400 241_text_num
+ + 244200 241_video_num + 31080 242_text_num + 155400 242_video_num
+ + 44400 251_text_num + 244200 251_video_num + 31080 252_text_num
+ + 155400 252_video_num + 45000 261_text_num + 247500 261_video_num
+ + 31500 262_text_num + 157500 262_video_num + 44200 271_text_num
+ + 243100 271_video_num + 30940 272_text_num + 154700 272_video_num
+ + 44200 281_text_num + 243100 281_video_num + 30940 282_text_num
+ + 154700 282_video_num + 43800 291_text_num + 240900 291_video_num
+ + 30660 292_text_num + 153300 292_video_num + 48200 301_text_num
+ + 265100 301_video_num + 33740 302_text_num + 168700 302_video_num
+ + 48000 311_text_num + 264000 311_video_num + 33600 312_text_num
+ + 168000 312_video_num + 36780 31_text_num + 202290 31_video_num
+ + 46800 321_text_num + 257400 321_video_num + 32760 322_text_num
+ + 163800 322_video_num + 25746 32_text_num + 128730 32_video_num
+ + 88000 331_text_num + 484000 331_video_num + 61600 332_text_num
+ + 308000 332_video_num + 88600 341_text_num + 487300 341_video_num
+ + 62020 342_text_num + 310100 342_video_num + 89000 351_text_num
+ + 489500 351_video_num + 62300 352_text_num + 311500 352_video_num
+ + 88800 361_text_num + 488400 361_video_num + 62160 362_text_num
+ + 310800 362_video_num + 89600 371_text_num + 492800 371_video_num
+ + 62720 372_text_num + 313600 372_video_num + 89400 381_text_num
+ + 491700 381_video_num + 62580 382_text_num + 312900 382_video_num
+ + 91200 391_text_num + 501600 391_video_num + 63840 392_text_num
+ + 319200 392_video_num + 90800 401_text_num + 499400 401_video_num
+ + 63560 402_text_num + 317800 402_video_num + 93400 411_text_num
+ + 513700 411_video_num + 65380 412_text_num + 326900 412_video_num
+ + 37100 41_text_num + 204050 41_video_num + 90800 421_text_num
+ + 499400 421_video_num + 63560 422_text_num + 317800 422_video_num
+ + 25970 42_text_num + 129850 42_video_num + 91200 431_text_num
+ + 501600 431_video_num + 63840 432_text_num + 319200 432_video_num
+ + 91400 441_text_num + 502700 441_video_num + 63980 442_text_num
+ + 319900 442_video_num + 47400 451_text_num + 260700 451_video_num
+ + 33180 452_text_num + 165900 452_video_num + 91600 461_text_num
+ + 503800 461_video_num + 64120 462_text_num + 320600 462_video_num
+ + 91800 471_text_num + 504900 471_video_num + 64260 472_text_num
+ + 321300 472_video_num + 92600 481_text_num + 509300 481_video_num
+ + 64820 482_text_num + 324100 482_video_num + 93600 491_text_num
+ + 514800 491_video_num + 65520 492_text_num + 327600 492_video_num
+ + 933200 501_text_num + 5132600 501_video_num + 653240 502_text_num
+ + 3266200 502_video_num + 95600 511_text_num + 525800 511_video_num
+ + 66920 512_text_num + 334600 512_video_num + 36920 51_text_num
+ + 203060 51_video_num + 95800 521_text_num + 526900 521_video_num
+ + 67060 522_text_num + 335300 522_video_num + 25844 52_text_num
+ + 129220 52_video_num + 30200 531_text_num + 166100 531_video_num
+ + 21140 532_text_num + 105700 532_video_num + 33200 541_text_num
+ + 182600 541_video_num + 23240 542_text_num + 116200 542_video_num
+ + 33800 551_text_num + 185900 551_video_num + 23660 552_text_num
+ + 118300 552_video_num + 34200 561_text_num + 188100 561_video_num
+ + 23940 562_text_num + 119700 562_video_num + 34000 571_text_num
+ + 187000 571_video_num + 23800 572_text_num + 119000 572_video_num
+ + 34200 581_text_num + 188100 581_video_num + 23940 582_text_num
+ + 119700 582_video_num + 34400 591_text_num + 189200 591_video_num
+ + 24080 592_text_num + 120400 592_video_num + 35000 601_text_num
+ + 192500 601_video_num + 24500 602_text_num + 122500 602_video_num
+ + 34600 611_text_num + 190300 611_video_num + 24220 612_text_num
+ + 121100 612_video_num + 35940 61_text_num + 197670 61_video_num
+ + 35200 621_text_num + 193600 621_video_num + 24640 622_text_num
+ + 123200 622_video_num + 25158 62_text_num + 125790 62_video_num
+ + 34800 631_text_num + 191400 631_video_num + 24360 632_text_num
+ + 121800 632_video_num + 34600 641_text_num + 190300 641_video_num
+ + 24220 642_text_num + 121100 642_video_num + 34800 651_text_num
+ + 191400 651_video_num + 24360 652_text_num + 121800 652_video_num
+ + 34400 661_text_num + 189200 661_video_num + 24080 662_text_num
+ + 120400 662_video_num + 34200 671_text_num + 188100 671_video_num
+ + 23940 672_text_num + 119700 672_video_num + 34200 681_text_num
+ + 188100 681_video_num + 23940 682_text_num + 119700 682_video_num
+ + 34200 691_text_num + 188100 691_video_num + 23940 692_text_num
+ + 119700 692_video_num + 34200 701_text_num + 188100 701_video_num
+ + 23940 702_text_num + 119700 702_video_num + 33200 711_text_num
+ + 182600 711_video_num + 23240 712_text_num + 116200 712_video_num
+ + 36060 71_text_num + 198330 71_video_num + 33200 721_text_num
+ + 182600 721_video_num + 23240 722_text_num + 116200 722_video_num
+ + 25242 72_text_num + 126210 72_video_num + 34600 731_text_num
+ + 190300 731_video_num + 24220 732_text_num + 121100 732_video_num
+ + 33600 741_text_num + 184800 741_video_num + 23520 742_text_num
+ + 117600 742_video_num + 33800 751_text_num + 185900 751_video_num
+ + 23660 752_text_num + 118300 752_video_num + 33200 761_text_num
+ + 182600 761_video_num + 23240 762_text_num + 116200 762_video_num
+ + 32200 771_text_num + 177100 771_video_num + 22540 772_text_num
+ + 112700 772_video_num + 32400 781_text_num + 178200 781_video_num
+ + 22680 782_text_num + 113400 782_video_num + 33600 791_text_num
+ + 184800 791_video_num + 23520 792_text_num + 117600 792_video_num
+ + 32800 801_text_num + 180400 801_video_num + 22960 802_text_num
+ + 114800 802_video_num + 32600 811_text_num + 179300 811_video_num
+ + 22820 812_text_num + 114100 812_video_num + 35800 81_text_num
+ + 196900 81_video_num + 32600 821_text_num + 179300 821_video_num
+ + 22820 822_text_num + 114100 822_video_num + 25060 82_text_num
+ + 125300 82_video_num + 71600 831_text_num + 393800 831_video_num
+ + 50120 832_text_num + 250600 832_video_num + 71800 841_text_num
+ + 394900 841_video_num + 50260 842_text_num + 251300 842_video_num
+ + 71600 851_text_num + 393800 851_video_num + 50120 852_text_num
+ + 250600 852_video_num + 72000 861_text_num + 396000 861_video_num
+ + 50400 862_text_num + 252000 862_video_num + 72600 871_text_num
+ + 399300 871_video_num + 50820 872_text_num + 254100 872_video_num
+ + 72400 881_text_num + 398200 881_video_num + 50680 882_text_num
+ + 253400 882_video_num + 73600 891_text_num + 404800 891_video_num
+ + 51520 892_text_num + 257600 892_video_num + 74000 901_text_num
+ + 407000 901_video_num + 51800 902_text_num + 259000 902_video_num
+ + 75200 911_text_num + 413600 911_video_num + 52640 912_text_num
+ + 263200 912_video_num + 35760 91_text_num + 196680 91_video_num
+ + 40200 921_text_num + 221100 921_video_num + 28140 922_text_num
+ + 140700 922_video_num + 25032 92_text_num + 125160 92_video_num
+ + 40400 931_text_num + 222200 931_video_num + 28280 932_text_num
+ + 141400 932_video_num + 40000 941_text_num + 220000 941_video_num
+ + 28000 942_text_num + 140000 942_video_num + 40000 951_text_num
+ + 220000 951_video_num + 28000 952_text_num + 140000 952_video_num
+ + 40200 961_text_num + 221100 961_video_num + 28140 962_text_num
+ + 140700 962_video_num + 40800 971_text_num + 224400 971_video_num
+ + 28560 972_text_num + 142800 972_video_num + 41000 981_text_num
+ + 225500 981_video_num + 28700 982_text_num + 143500 982_video_num
+ + 41200 991_text_num + 226600 991_video_num + 28840 992_text_num
+ + 144200 992_video_num <= 10000000
+Bounds
+ 1001_text_num <= 1
+ 1001_video_num = 0
+ 1002_text_num = 0
+ 1002_video_num <= 10
+ 1011_text_num <= 2
+ 1011_video_num = 0
+ 1012_text_num = 0
+ 1012_video_num <= 12
+ 101_text_num <= 2
+ 101_video_num = 0
+ 1021_text_num <= 1
+ 1021_video_num <= 1
+ 1022_text_num = 0
+ 1022_video_num <= 2
+ 102_text_num = 0
+ 102_video_num <= 5
+ 1031_text_num = 0
+ 1031_video_num = 0
+ 1032_text_num = 0
+ 1032_video_num <= 1
+ 1041_text_num <= 2
+ 1041_video_num <= 2
+ 1042_text_num = 0
+ 1042_video_num = 0
+ 1051_text_num <= 2
+ 1051_video_num = 0
+ 1052_text_num = 0
+ 1052_video_num = 0
+ 1061_text_num <= 3
+ 1061_video_num = 0
+ 1062_text_num <= 1
+ 1062_video_num = 0
+ 1071_text_num <= 2
+ 1071_video_num = 0
+ 1072_text_num <= 1
+ 1072_video_num <= 1
+ 1081_text_num <= 1
+ 1081_video_num <= 2
+ 1082_text_num <= 1
+ 1082_video_num <= 1
+ 1091_text_num <= 2
+ 1091_video_num = 0
+ 1092_text_num <= 1
+ 1092_video_num = 0
+ 1101_text_num <= 1
+ 1101_video_num <= 1
+ 1102_text_num <= 1
+ 1102_video_num <= 2
+ 1111_text_num <= 4
+ 1111_video_num = 0
+ 1112_text_num <= 1
+ 1112_video_num = 0
+ 111_text_num <= 4
+ 111_video_num = 0
+ 1121_text_num <= 1
+ 1121_video_num = 0
+ 1122_text_num <= 2
+ 1122_video_num = 0
+ 112_text_num = 0
+ 112_video_num <= 9
+ 1131_text_num <= 5
+ 1131_video_num = 0
+ 1132_text_num <= 1
+ 1132_video_num = 0
+ 1141_text_num <= 1
+ 1141_video_num = 0
+ 1142_text_num <= 1
+ 1142_video_num = 0
+ 1151_text_num <= 1
+ 1151_video_num = 0
+ 1152_text_num <= 4
+ 1152_video_num = 0
+ 1161_text_num = 0
+ 1161_video_num <= 1
+ 1162_text_num = 0
+ 1162_video_num <= 3
+ 1171_text_num = 0
+ 1171_video_num <= 1
+ 1172_text_num <= 1
+ 1172_video_num <= 1
+ 1181_text_num <= 4
+ 1181_video_num = 0
+ 1182_text_num <= 1
+ 1182_video_num = 0
+ 1191_text_num <= 2
+ 1191_video_num <= 2
+ 1192_text_num <= 1
+ 1192_video_num <= 1
+ 11_text_num <= 1
+ 11_video_num = 0
+ 1201_text_num <= 2
+ 1201_video_num = 0
+ 1202_text_num = 0
+ 1202_video_num <= 6
+ 1211_text_num <= 2
+ 1211_video_num <= 1
+ 1212_text_num <= 1
+ 1212_video_num = 0
+ 121_text_num = 0
+ 121_video_num <= 3
+ 1221_text_num <= 1
+ 1221_video_num <= 1
+ 1222_text_num = 0
+ 1222_video_num <= 1
+ 122_text_num = 0
+ 122_video_num = 0
+ 1231_text_num <= 1
+ 1231_video_num <= 1
+ 1232_text_num = 0
+ 1232_video_num = 0
+ 1241_text_num <= 3
+ 1241_video_num = 0
+ 1242_text_num = 0
+ 1242_video_num = 0
+ 1251_text_num = 0
+ 1251_video_num = 0
+ 1252_text_num = 0
+ 1252_video_num = 0
+ 1261_text_num = 0
+ 1261_video_num <= 4
+ 1262_text_num = 0
+ 1262_video_num = 0
+ 1271_text_num <= 1
+ 1271_video_num <= 1
+ 1272_text_num = 0
+ 1272_video_num = 0
+ 1281_text_num <= 1
+ 1281_video_num <= 1
+ 1282_text_num <= 1
+ 1282_video_num = 0
+ 1291_text_num <= 1
+ 1291_video_num = 0
+ 1292_text_num <= 1
+ 1292_video_num = 0
+ 12_text_num = 0
+ 12_video_num <= 1
+ 1301_text_num = 0
+ 1301_video_num = 0
+ 1302_text_num <= 1
+ 1302_video_num <= 1
+ 1311_text_num <= 1
+ 1311_video_num = 0
+ 1312_text_num <= 1
+ 1312_video_num <= 1
+ 131_text_num = 0
+ 131_video_num = 0
+ 1321_text_num <= 1
+ 1321_video_num <= 2
+ 1322_text_num <= 1
+ 1322_video_num <= 1
+ 132_text_num = 0
+ 132_video_num <= 2
+ 1331_text_num <= 2
+ 1331_video_num = 0
+ 1332_text_num <= 1
+ 1332_video_num = 0
+ 141_text_num <= 5
+ 141_video_num <= 2
+ 142_text_num <= 3
+ 142_video_num <= 5
+ 151_text_num = 0
+ 151_video_num <= 1
+ 152_text_num = 0
+ 152_video_num = 0
+ 161_text_num <= 5
+ 161_video_num = 0
+ 162_text_num = 0
+ 162_video_num <= 8
+ 171_text_num <= 20
+ 171_video_num <= 2
+ 172_text_num = 0
+ 172_video_num <= 6
+ 181_text_num = 0
+ 181_video_num <= 2
+ 182_text_num = 0
+ 182_video_num <= 1
+ 191_text_num = 0
+ 191_video_num <= 2
+ 192_text_num = 0
+ 192_video_num = 0
+ 201_text_num <= 2
+ 201_video_num <= 1
+ 202_text_num = 0
+ 202_video_num <= 1
+ 211_text_num <= 5
+ 211_video_num = 0
+ 212_text_num <= 2
+ 212_video_num <= 3
+ 21_text_num <= 5
+ 21_video_num <= 2
+ 221_text_num = 0
+ 221_video_num <= 1
+ 222_text_num = 0
+ 222_video_num <= 1
+ 22_text_num <= 2
+ 22_video_num <= 2
+ 231_text_num <= 1
+ 231_video_num <= 1
+ 232_text_num = 0
+ 232_video_num <= 1
+ 241_text_num <= 1
+ 241_video_num <= 2
+ 242_text_num <= 2
+ 242_video_num = 0
+ 251_text_num = 0
+ 251_video_num <= 2
+ 252_text_num <= 1
+ 252_video_num <= 1
+ 261_text_num = 0
+ 261_video_num = 0
+ 262_text_num = 0
+ 262_video_num <= 1
+ 271_text_num <= 1
+ 271_video_num <= 2
+ 272_text_num = 0
+ 272_video_num = 0
+ 281_text_num = 0
+ 281_video_num <= 10
+ 282_text_num <= 1
+ 282_video_num <= 6
+ 291_text_num = 0
+ 291_video_num <= 1
+ 292_text_num <= 1
+ 292_video_num = 0
+ 301_text_num = 0
+ 301_video_num = 0
+ 302_text_num <= 1
+ 302_video_num <= 1
+ 311_text_num = 0
+ 311_video_num = 0
+ 312_text_num <= 1
+ 312_video_num <= 1
+ 31_text_num = 0
+ 31_video_num <= 1
+ 321_text_num <= 1
+ 321_video_num <= 1
+ 322_text_num <= 1
+ 322_video_num <= 3
+ 32_text_num = 0
+ 32_video_num <= 3
+ 331_text_num = 0
+ 331_video_num = 0
+ 332_text_num = 0
+ 332_video_num <= 1
+ 341_text_num <= 2
+ 341_video_num = 0
+ 342_text_num = 0
+ 342_video_num <= 2
+ 351_text_num = 0
+ 351_video_num <= 1
+ 352_text_num = 0
+ 352_video_num = 0
+ 361_text_num = 0
+ 361_video_num = 0
+ 362_text_num = 0
+ 362_video_num <= 3
+ 371_text_num <= 3
+ 371_video_num = 0
+ 372_text_num = 0
+ 372_video_num <= 5
+ 381_text_num = 0
+ 381_video_num <= 1
+ 382_text_num = 0
+ 382_video_num <= 2
+ 391_text_num <= 3
+ 391_video_num = 0
+ 392_text_num = 0
+ 392_video_num <= 1
+ 401_text_num = 0
+ 401_video_num = 0
+ 402_text_num = 0
+ 402_video_num = 0
+ 411_text_num = 0
+ 411_video_num = 0
+ 412_text_num = 0
+ 412_video_num = 0
+ 41_text_num = 0
+ 41_video_num = 0
+ 421_text_num = 0
+ 421_video_num = 0
+ 422_text_num = 0
+ 422_video_num <= 1
+ 42_text_num = 0
+ 42_video_num <= 3
+ 431_text_num = 0
+ 431_video_num = 0
+ 432_text_num = 0
+ 432_video_num = 0
+ 441_text_num <= 3
+ 441_video_num = 0
+ 442_text_num = 0
+ 442_video_num <= 2
+ 451_text_num = 0
+ 451_video_num <= 8
+ 452_text_num <= 1
+ 452_video_num <= 2
+ 461_text_num = 0
+ 461_video_num <= 1
+ 462_text_num = 0
+ 462_video_num <= 3
+ 471_text_num <= 2
+ 471_video_num = 0
+ 472_text_num = 0
+ 472_video_num = 0
+ 481_text_num = 0
+ 481_video_num <= 1
+ 482_text_num = 0
+ 482_video_num <= 1
+ 491_text_num <= 1
+ 491_video_num <= 1
+ 492_text_num = 0
+ 492_video_num <= 1
+ 501_text_num = 0
+ 501_video_num <= 1
+ 502_text_num = 0
+ 502_video_num <= 1
+ 511_text_num = 0
+ 511_video_num <= 2
+ 512_text_num = 0
+ 512_video_num <= 2
+ 51_text_num <= 4
+ 51_video_num <= 2
+ 521_text_num <= 1
+ 521_video_num <= 1
+ 522_text_num = 0
+ 522_video_num <= 1
+ 52_text_num <= 1
+ 52_video_num <= 2
+ 531_text_num <= 1
+ 531_video_num = 0
+ 532_text_num = 0
+ 532_video_num <= 2
+ 541_text_num <= 3
+ 541_video_num <= 4
+ 542_text_num = 0
+ 542_video_num <= 3
+ 551_text_num = 0
+ 551_video_num <= 1
+ 552_text_num = 0
+ 552_video_num <= 3
+ 561_text_num = 0
+ 561_video_num = 0
+ 562_text_num = 0
+ 562_video_num = 0
+ 571_text_num <= 1
+ 571_video_num = 0
+ 572_text_num = 0
+ 572_video_num <= 1
+ 581_text_num <= 4
+ 581_video_num = 0
+ 582_text_num = 0
+ 582_video_num = 0
+ 591_text_num <= 1
+ 591_video_num = 0
+ 592_text_num = 0
+ 592_video_num = 0
+ 601_text_num = 0
+ 601_video_num = 0
+ 602_text_num = 0
+ 602_video_num = 0
+ 611_text_num <= 3
+ 611_video_num = 0
+ 612_text_num = 0
+ 612_video_num = 0
+ 61_text_num <= 2
+ 61_video_num = 0
+ 621_text_num = 0
+ 621_video_num = 0
+ 622_text_num = 0
+ 622_video_num = 0
+ 62_text_num <= 1
+ 62_video_num = 0
+ 631_text_num = 0
+ 631_video_num = 0
+ 632_text_num = 0
+ 632_video_num = 0
+ 641_text_num <= 1
+ 641_video_num <= 1
+ 642_text_num = 0
+ 642_video_num = 0
+ 651_text_num = 0
+ 651_video_num = 0
+ 652_text_num = 0
+ 652_video_num = 0
+ 661_text_num = 0
+ 661_video_num <= 2
+ 662_text_num = 0
+ 662_video_num = 0
+ 671_text_num = 0
+ 671_video_num <= 1
+ 672_text_num = 0
+ 672_video_num = 0
+ 681_text_num <= 1
+ 681_video_num = 0
+ 682_text_num = 0
+ 682_video_num <= 7
+ 691_text_num = 0
+ 691_video_num <= 2
+ 692_text_num = 0
+ 692_video_num = 0
+ 701_text_num = 0
+ 701_video_num = 0
+ 702_text_num = 0
+ 702_video_num = 0
+ 711_text_num = 0
+ 711_video_num = 0
+ 712_text_num = 0
+ 712_video_num = 0
+ 71_text_num <= 1
+ 71_video_num <= 1
+ 721_text_num <= 1
+ 721_video_num <= 8
+ 722_text_num = 0
+ 722_video_num = 0
+ 72_text_num = 0
+ 72_video_num <= 1
+ 731_text_num = 0
+ 731_video_num = 0
+ 732_text_num = 0
+ 732_video_num = 0
+ 741_text_num = 0
+ 741_video_num <= 1
+ 742_text_num = 0
+ 742_video_num <= 1
+ 751_text_num = 0
+ 751_video_num = 0
+ 752_text_num = 0
+ 752_video_num = 0
+ 761_text_num <= 1
+ 761_video_num = 0
+ 762_text_num = 0
+ 762_video_num = 0
+ 771_text_num <= 2
+ 771_video_num = 0
+ 772_text_num = 0
+ 772_video_num <= 1
+ 781_text_num = 0
+ 781_video_num <= 1
+ 782_text_num = 0
+ 782_video_num = 0
+ 791_text_num = 0
+ 791_video_num = 0
+ 792_text_num = 0
+ 792_video_num = 0
+ 801_text_num = 0
+ 801_video_num = 0
+ 802_text_num = 0
+ 802_video_num <= 2
+ 811_text_num <= 2
+ 811_video_num = 0
+ 812_text_num = 0
+ 812_video_num = 0
+ 81_text_num = 0
+ 81_video_num <= 2
+ 821_text_num = 0
+ 821_video_num = 0
+ 822_text_num = 0
+ 822_video_num <= 3
+ 82_text_num = 0
+ 82_video_num <= 1
+ 831_text_num <= 2
+ 831_video_num <= 2
+ 832_text_num <= 1
+ 832_video_num <= 5
+ 841_text_num <= 1
+ 841_video_num <= 3
+ 842_text_num <= 1
+ 842_video_num <= 3
+ 851_text_num <= 1
+ 851_video_num = 0
+ 852_text_num <= 1
+ 852_video_num <= 1
+ 861_text_num <= 2
+ 861_video_num = 0
+ 862_text_num = 0
+ 862_video_num = 0
+ 871_text_num <= 2
+ 871_video_num = 0
+ 872_text_num <= 1
+ 872_video_num <= 2
+ 881_text_num = 0
+ 881_video_num = 0
+ 882_text_num = 0
+ 882_video_num <= 1
+ 891_text_num <= 1
+ 891_video_num = 0
+ 892_text_num = 0
+ 892_video_num <= 2
+ 901_text_num <= 5
+ 901_video_num = 0
+ 902_text_num = 0
+ 902_video_num = 0
+ 911_text_num <= 1
+ 911_video_num <= 2
+ 912_text_num <= 1
+ 912_video_num <= 1
+ 91_text_num = 0
+ 91_video_num <= 1
+ 921_text_num <= 1
+ 921_video_num = 0
+ 922_text_num = 0
+ 922_video_num <= 2
+ 92_text_num = 0
+ 92_video_num <= 1
+ 931_text_num <= 1
+ 931_video_num <= 1
+ 932_text_num = 0
+ 932_video_num <= 3
+ 941_text_num = 0
+ 941_video_num = 0
+ 942_text_num = 0
+ 942_video_num <= 1
+ 951_text_num <= 2
+ 951_video_num = 0
+ 952_text_num <= 1
+ 952_video_num <= 7
+ 961_text_num = 0
+ 961_video_num <= 1
+ 962_text_num <= 2
+ 962_video_num <= 1
+ 971_text_num <= 3
+ 971_video_num = 0
+ 972_text_num = 0
+ 972_video_num <= 4
+ 981_text_num = 0
+ 981_video_num = 0
+ 982_text_num = 0
+ 982_video_num <= 2
+ 991_text_num <= 3
+ 991_video_num <= 3
+ 992_text_num = 0
+ 992_video_num = 0
+End
