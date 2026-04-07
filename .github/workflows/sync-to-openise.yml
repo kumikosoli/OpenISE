@@ -1,0 +1,58 @@
+name: Sync To Openise
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Checkout openise repository
+        uses: actions/checkout@v4
+        with:
+          repository: Timlin15/openise
+          token: ${{ secrets.OPENISE_SYNC_TOKEN }}
+          path: openise
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Generate Hugo content
+        run: |
+          python scripts/sync.py \
+            --source . \
+            --target ./openise \
+            --repo "${{ github.repository }}" \
+            --branch "${{ github.ref_name }}"
+
+      - name: Configure git identity
+        working-directory: ./openise
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit and push changes
+        working-directory: ./openise
+        env:
+          SHORT_SHA: ${{ github.sha }}
+        run: |
+          git add content/doc data/files.json
+          git add layouts/shortcodes/filetree.html layouts/partials/filetree-render.html layouts/partials/filetree-icon.html layouts/_partials/custom/head-end.html layouts/_partials/sidebar.html assets/css/custom.css
+          git add hugo.yaml
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "sync: from sysu-ise-course-materials@${SHORT_SHA::7}"
+          git push origin HEAD:main
