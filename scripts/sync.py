@@ -18,6 +18,7 @@ RAW_BASE_URL = (
 )
 SKIP_NAMES = {".git", ".github", ".gitignore", ".DS_Store", "__pycache__"}
 DEFAULT_MAJOR_KEYWORDS = ("智能科学与技术", "智慧交通")
+SPECIAL_TOP_LEVEL_DIRS = ("大一公共课程", "往届课程")
 SEMESTER_PATTERN = re.compile(
     r"(大一|大二|大三|大四|大五|秋|春|上|下|学期|semester|term)", re.IGNORECASE
 )
@@ -530,7 +531,9 @@ def is_semester_dir(directory: Path) -> bool:
 
 
 def is_allowed_major_dir(directory: Path, major_keywords: tuple[str, ...]) -> bool:
-    return any(keyword in directory.name for keyword in major_keywords)
+    return directory.name in SPECIAL_TOP_LEVEL_DIRS or any(
+        keyword in directory.name for keyword in major_keywords
+    )
 
 
 def strip_sort_prefix(name: str) -> str:
@@ -796,6 +799,36 @@ def find_course_dirs(semester_dir: Path, source_root: Path) -> list[Path]:
     return list_child_dirs(semester_dir, source_root)
 
 
+def write_course_page(
+    content_root: Path,
+    target_path: Path,
+    course_dir: Path,
+    source_root: Path,
+) -> str:
+    course_title = resolve_title(course_dir)
+    course_readme = load_readme(course_dir)
+    course_body = course_readme[1] if course_readme else ""
+    course_rel = course_dir.relative_to(source_root).as_posix()
+    course_weight = extract_sort_weight(course_dir.name)
+    resources_block = (
+        "## 资源下载\n\n"
+        f'{{{{< filetree path="{course_rel}" >}}}}'
+    )
+    course_frontmatter: dict[str, Any] = {
+        "url": "/" + target_path.as_posix().strip("/") + "/"
+    }
+    if course_weight is not None:
+        course_frontmatter["weight"] = course_weight
+    write_markdown(
+        content_root / target_path,
+        course_title,
+        course_body,
+        resources_block,
+        extra_frontmatter=course_frontmatter,
+    )
+    return course_rel
+
+
 def preserve_root_index(target_root: Path) -> str | None:
     root_index = target_root / ROOT_INDEX
     if not root_index.exists():
@@ -828,10 +861,6 @@ def generate_specialized_content(
         semester_dirs = [
             item for item in list_child_dirs(major_dir, source_root) if is_semester_dir(item)
         ]
-        if not semester_dirs:
-            LOGGER.info("Skipping non-standard top-level directory: %s", major_dir.name)
-            continue
-
         major_title = resolve_title(major_dir)
         major_readme = load_readme(major_dir)
         major_body = major_readme[1] if major_readme else ""
@@ -846,49 +875,58 @@ def generate_specialized_content(
             extra_frontmatter=major_frontmatter,
         )
 
-        for semester_dir in semester_dirs:
-            course_dirs = find_course_dirs(semester_dir, source_root)
-            semester_title = resolve_title(semester_dir)
-            semester_readme = load_readme(semester_dir)
-            semester_body = semester_readme[1] if semester_readme else ""
-            semester_weight = extract_sort_weight(semester_dir.name)
-            cards_block = render_cards(course_dirs) if course_dirs else None
-            semester_frontmatter: dict[str, Any] = {
-                "url": f"/doc/{major_dir.name}/{semester_dir.name}/"
-            }
-            if semester_weight is not None:
-                semester_frontmatter["weight"] = semester_weight
-            write_markdown(
-                content_root / major_dir.name / semester_dir.name / "_index.md",
-                semester_title,
-                semester_body,
-                cards_block,
-                extra_frontmatter=semester_frontmatter,
-            )
-
-            for course_dir in course_dirs:
-                course_title = resolve_title(course_dir)
-                course_readme = load_readme(course_dir)
-                course_body = course_readme[1] if course_readme else ""
-                course_rel = course_dir.relative_to(source_root).as_posix()
-                course_weight = extract_sort_weight(course_dir.name)
-                resources_block = (
-                    "## 资源下载\n\n"
-                    f'{{{{< filetree path="{course_rel}" >}}}}'
-                )
-                course_frontmatter: dict[str, Any] = {
-                    "url": f"/doc/{major_dir.name}/{semester_dir.name}/{course_dir.name}/"
+        if semester_dirs:
+            for semester_dir in semester_dirs:
+                course_dirs = find_course_dirs(semester_dir, source_root)
+                semester_title = resolve_title(semester_dir)
+                semester_readme = load_readme(semester_dir)
+                semester_body = semester_readme[1] if semester_readme else ""
+                semester_weight = extract_sort_weight(semester_dir.name)
+                cards_block = render_cards(course_dirs) if course_dirs else None
+                semester_frontmatter: dict[str, Any] = {
+                    "url": f"/doc/{major_dir.name}/{semester_dir.name}/"
                 }
-                if course_weight is not None:
-                    course_frontmatter["weight"] = course_weight
+                if semester_weight is not None:
+                    semester_frontmatter["weight"] = semester_weight
                 write_markdown(
-                    content_root / major_dir.name / semester_dir.name / f"{course_dir.name}.md",
-                    course_title,
-                    course_body,
-                    resources_block,
-                    extra_frontmatter=course_frontmatter,
+                    content_root / major_dir.name / semester_dir.name / "_index.md",
+                    semester_title,
+                    semester_body,
+                    cards_block,
+                    extra_frontmatter=semester_frontmatter,
                 )
-                files_index[course_rel] = build_file_tree(course_dir, source_root, base_url)
+
+                for course_dir in course_dirs:
+                    course_rel = write_course_page(
+                        content_root,
+                        Path(major_dir.name) / semester_dir.name / f"{course_dir.name}.md",
+                        course_dir,
+                        source_root,
+                    )
+                    files_index[course_rel] = build_file_tree(course_dir, source_root, base_url)
+            continue
+
+        course_dirs = find_course_dirs(major_dir, source_root)
+        if not course_dirs:
+            LOGGER.info("Skipping non-standard top-level directory: %s", major_dir.name)
+            continue
+
+        cards_block = render_cards(course_dirs)
+        write_markdown(
+            content_root / major_dir.name / "_index.md",
+            major_title,
+            major_body,
+            cards_block,
+            extra_frontmatter=major_frontmatter,
+        )
+        for course_dir in course_dirs:
+            course_rel = write_course_page(
+                content_root,
+                Path(major_dir.name) / f"{course_dir.name}.md",
+                course_dir,
+                source_root,
+            )
+            files_index[course_rel] = build_file_tree(course_dir, source_root, base_url)
 
     return files_index
 
