@@ -22,6 +22,7 @@ SEMESTER_PATTERN = re.compile(
     r"(大一|大二|大三|大四|大五|秋|春|上|下|学期|semester|term)", re.IGNORECASE
 )
 SORT_PREFIX_PATTERN = re.compile(r"^\d{1,3}[-_]+")
+YEAR_WEIGHT_MAP = {"大一": 1, "大二": 2, "大三": 3, "大四": 4, "大五": 5}
 FILETREE_SHORTCODE = """{{- $path := .Get "path" -}}
 {{- $node := index site.Data.files $path -}}
 
@@ -425,6 +426,33 @@ CUSTOM_CSS = """@media (min-width: 768px) {
   }
 }
 """
+DOC_LIST_TEMPLATE = """{{ define "main" }}
+  <div class='hx:mx-auto hx:flex hextra-max-page-width'>
+    {{ partial "sidebar.html" (dict "context" .) }}
+    {{ partial "toc.html" . }}
+    <article class="hx:w-full hx:break-words hx:flex hx:min-h-[calc(100vh-var(--navbar-height))] hx:min-w-0 hx:justify-center hx:pb-8 hx:pr-[calc(env(safe-area-inset-right)-1.5rem)]">
+      <main id="content" class="hx:w-full hx:min-w-0 hextra-max-content-width hx:px-6 hx:pt-4 hx:md:px-12">
+        {{ partial "breadcrumb.html" (dict "page" . "enable" true) }}
+        <div class="content">
+          {{ if .Title }}
+          <div class="hx:flex hx:flex-col hx:sm:flex-row hx:items-start hx:sm:items-center hx:sm:justify-between hx:gap-4 hx:mb-4">
+            <h1 class="hx:mb-0">{{ .Title }}</h1>
+            {{ partial "components/page-context-menu" . }}
+          </div>
+          {{ end }}
+          {{ .Content }}
+        </div>
+        {{ partial "components/last-updated.html" . }}
+        {{- if (site.Params.page.displayPagination | default true) -}}
+          {{- partial "components/pager.html" . -}}
+        {{- end -}}
+        {{ partial "components/comments.html" . }}
+      </main>
+    </article>
+  </div>
+{{ end }}
+"""
+DOC_SINGLE_TEMPLATE = DOC_LIST_TEMPLATE
 
 
 def parse_args() -> argparse.Namespace:
@@ -509,6 +537,33 @@ def strip_sort_prefix(name: str) -> str:
     return SORT_PREFIX_PATTERN.sub("", name)
 
 
+def extract_sort_weight(name: str) -> int | None:
+    match = SORT_PREFIX_PATTERN.match(name)
+    if match:
+        prefix = match.group(0).rstrip("-_")
+        try:
+            return int(prefix) + 1
+        except ValueError:
+            return None
+
+    normalized = strip_sort_prefix(name)
+    year_weight = next(
+        (weight for label, weight in YEAR_WEIGHT_MAP.items() if label in normalized),
+        None,
+    )
+    if year_weight is None:
+        return None
+
+    if "上" in normalized or "秋" in normalized:
+        term_weight = 1
+    elif "下" in normalized or "春" in normalized:
+        term_weight = 2
+    else:
+        term_weight = 0
+
+    return year_weight * 10 + term_weight
+
+
 def parse_frontmatter_and_body(text: str) -> tuple[dict[str, str], str]:
     stripped = text.lstrip("\ufeff")
     if not stripped.startswith("---\n"):
@@ -585,6 +640,29 @@ def ensure_frontmatter(title: str, body: str) -> str:
     return f'---\ntitle: "{title}"\n---\n'
 
 
+def normalize_heading_text(text: str) -> str:
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def strip_duplicate_leading_h1(title: str, body: str) -> str:
+    lines = body.splitlines()
+    index = 0
+    while index < len(lines) and not lines[index].strip():
+        index += 1
+
+    if index >= len(lines):
+        return body
+
+    first_line = lines[index].strip()
+    if not first_line.startswith("# "):
+        return body
+
+    index += 1
+    while index < len(lines) and not lines[index].strip():
+        index += 1
+    return "\n".join(lines[index:]).lstrip("\n")
+
+
 def render_placeholder(title: str) -> str:
     return f'---\ntitle: "{title}"\n---\n'
 
@@ -592,8 +670,14 @@ def render_placeholder(title: str) -> str:
 def render_frontmatter(frontmatter: dict[str, str]) -> str:
     lines = ["---"]
     for key, value in frontmatter.items():
-        escaped = str(value).replace('"', '\\"')
-        lines.append(f'{key}: "{escaped}"')
+        if isinstance(value, bool):
+            serialized = "true" if value else "false"
+        elif isinstance(value, (int, float)):
+            serialized = str(value)
+        else:
+            escaped = str(value).replace('"', '\\"')
+            serialized = f'"{escaped}"'
+        lines.append(f"{key}: {serialized}")
     lines.append("---")
     return "\n".join(lines) + "\n"
 
@@ -607,10 +691,15 @@ def write_markdown(
 ) -> None:
     target_file.parent.mkdir(parents=True, exist_ok=True)
     extra_frontmatter = extra_frontmatter or {}
-    content = ensure_frontmatter(title, body) if body else render_placeholder(title)
+    normalized_body = strip_duplicate_leading_h1(title, body)
+    content = (
+        ensure_frontmatter(title, normalized_body)
+        if normalized_body
+        else render_placeholder(title)
+    )
     if extra_frontmatter:
         merged_frontmatter = {"title": title, **extra_frontmatter}
-        normalized_body = body.strip()
+        normalized_body = normalized_body.strip()
         content = render_frontmatter(merged_frontmatter)
         if normalized_body:
             content += "\n" + normalized_body + "\n"
@@ -707,19 +796,22 @@ def find_course_dirs(semester_dir: Path, source_root: Path) -> list[Path]:
     return list_child_dirs(semester_dir, source_root)
 
 
-def generate_root_index(source_root: Path, target_root: Path) -> None:
-    loaded = load_readme(source_root)
-    title = source_root.name
-    body = ""
-    if loaded:
-        frontmatter, body = loaded
-        title = frontmatter.get("title") or extract_first_h1(body) or source_root.name
-    write_markdown(
-        target_root / ROOT_INDEX,
-        title,
-        body,
-        extra_frontmatter={"url": "/doc/"},
-    )
+def preserve_root_index(target_root: Path) -> str | None:
+    root_index = target_root / ROOT_INDEX
+    if not root_index.exists():
+        LOGGER.info("No existing %s to preserve.", root_index)
+        return None
+    LOGGER.info("Preserving existing %s", root_index)
+    return root_index.read_text(encoding="utf-8")
+
+
+def restore_root_index(target_root: Path, preserved_root_index: str | None) -> None:
+    if preserved_root_index is None:
+        return
+    root_index = target_root / ROOT_INDEX
+    root_index.parent.mkdir(parents=True, exist_ok=True)
+    root_index.write_text(preserved_root_index, encoding="utf-8")
+    LOGGER.info("Restored %s", root_index)
 
 
 def generate_specialized_content(
@@ -743,11 +835,15 @@ def generate_specialized_content(
         major_title = resolve_title(major_dir)
         major_readme = load_readme(major_dir)
         major_body = major_readme[1] if major_readme else ""
+        major_weight = extract_sort_weight(major_dir.name)
+        major_frontmatter: dict[str, Any] = {"url": f"/doc/{major_dir.name}/"}
+        if major_weight is not None:
+            major_frontmatter["weight"] = major_weight
         write_markdown(
             content_root / major_dir.name / "_index.md",
             major_title,
             major_body,
-            extra_frontmatter={"url": f"/doc/{major_dir.name}/"},
+            extra_frontmatter=major_frontmatter,
         )
 
         for semester_dir in semester_dirs:
@@ -755,15 +851,19 @@ def generate_specialized_content(
             semester_title = resolve_title(semester_dir)
             semester_readme = load_readme(semester_dir)
             semester_body = semester_readme[1] if semester_readme else ""
+            semester_weight = extract_sort_weight(semester_dir.name)
             cards_block = render_cards(course_dirs) if course_dirs else None
+            semester_frontmatter: dict[str, Any] = {
+                "url": f"/doc/{major_dir.name}/{semester_dir.name}/"
+            }
+            if semester_weight is not None:
+                semester_frontmatter["weight"] = semester_weight
             write_markdown(
                 content_root / major_dir.name / semester_dir.name / "_index.md",
                 semester_title,
                 semester_body,
                 cards_block,
-                extra_frontmatter={
-                    "url": f"/doc/{major_dir.name}/{semester_dir.name}/"
-                },
+                extra_frontmatter=semester_frontmatter,
             )
 
             for course_dir in course_dirs:
@@ -771,18 +871,22 @@ def generate_specialized_content(
                 course_readme = load_readme(course_dir)
                 course_body = course_readme[1] if course_readme else ""
                 course_rel = course_dir.relative_to(source_root).as_posix()
+                course_weight = extract_sort_weight(course_dir.name)
                 resources_block = (
                     "## 资源下载\n\n"
                     f'{{{{< filetree path="{course_rel}" >}}}}'
                 )
+                course_frontmatter: dict[str, Any] = {
+                    "url": f"/doc/{major_dir.name}/{semester_dir.name}/{course_dir.name}/"
+                }
+                if course_weight is not None:
+                    course_frontmatter["weight"] = course_weight
                 write_markdown(
                     content_root / major_dir.name / semester_dir.name / f"{course_dir.name}.md",
                     course_title,
                     course_body,
                     resources_block,
-                    extra_frontmatter={
-                        "url": f"/doc/{major_dir.name}/{semester_dir.name}/{course_dir.name}/"
-                    },
+                    extra_frontmatter=course_frontmatter,
                 )
                 files_index[course_rel] = build_file_tree(course_dir, source_root, base_url)
 
@@ -807,6 +911,8 @@ def write_openise_support_files(target_root: Path) -> None:
     head_end_path = target_root / "layouts/_partials/custom/head-end.html"
     sidebar_partial_path = target_root / "layouts/_partials/sidebar.html"
     custom_css_path = target_root / "assets/css/custom.css"
+    doc_list_path = target_root / "layouts/doc/list.html"
+    doc_single_path = target_root / "layouts/doc/single.html"
     template_root = Path(__file__).resolve().parent / "templates"
     sidebar_template_path = template_root / "sidebar.html"
 
@@ -816,12 +922,16 @@ def write_openise_support_files(target_root: Path) -> None:
     head_end_path.parent.mkdir(parents=True, exist_ok=True)
     sidebar_partial_path.parent.mkdir(parents=True, exist_ok=True)
     custom_css_path.parent.mkdir(parents=True, exist_ok=True)
+    doc_list_path.parent.mkdir(parents=True, exist_ok=True)
+    doc_single_path.parent.mkdir(parents=True, exist_ok=True)
 
     shortcode_path.write_text(FILETREE_SHORTCODE, encoding="utf-8")
     partial_path.write_text(FILETREE_PARTIAL, encoding="utf-8")
     icon_partial_path.write_text(FILETREE_ICON_PARTIAL, encoding="utf-8")
     head_end_path.write_text(HEAD_END_PARTIAL, encoding="utf-8")
     custom_css_path.write_text(CUSTOM_CSS, encoding="utf-8")
+    doc_list_path.write_text(DOC_LIST_TEMPLATE, encoding="utf-8")
+    doc_single_path.write_text(DOC_SINGLE_TEMPLATE, encoding="utf-8")
     if sidebar_template_path.exists():
         shutil.copyfile(sidebar_template_path, sidebar_partial_path)
         LOGGER.info("Wrote %s", sidebar_partial_path)
@@ -833,6 +943,8 @@ def write_openise_support_files(target_root: Path) -> None:
     LOGGER.info("Wrote %s", icon_partial_path)
     LOGGER.info("Wrote %s", head_end_path)
     LOGGER.info("Wrote %s", custom_css_path)
+    LOGGER.info("Wrote %s", doc_list_path)
+    LOGGER.info("Wrote %s", doc_single_path)
 
 
 def ensure_doc_menu_page_ref(target_root: Path) -> None:
@@ -873,12 +985,12 @@ def main() -> int:
     validate_paths(source_root, target_root)
 
     content_root = target_root / "content/doc"
+    preserved_root_index = preserve_root_index(target_root)
     if content_root.exists():
         shutil.rmtree(content_root)
         LOGGER.info("Removed %s", content_root)
     content_root.mkdir(parents=True, exist_ok=True)
-
-    generate_root_index(source_root, target_root)
+    restore_root_index(target_root, preserved_root_index)
     files_index = generate_specialized_content(
         source_root, target_root, base_url, major_keywords
     )

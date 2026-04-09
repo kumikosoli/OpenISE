@@ -48,7 +48,7 @@ jobs:
           SHORT_SHA: ${{ github.sha }}
         run: |
           git add content/doc data/files.json
-          git add layouts/shortcodes/filetree.html layouts/partials/filetree-render.html layouts/partials/filetree-icon.html layouts/_partials/custom/head-end.html layouts/_partials/sidebar.html assets/css/custom.css
+          git add layouts/shortcodes/filetree.html layouts/partials/filetree-render.html layouts/partials/filetree-icon.html layouts/_partials/custom/head-end.html layouts/_partials/sidebar.html layouts/doc/list.html layouts/doc/single.html assets/css/custom.css
           git add hugo.yaml
           if git diff --cached --quiet; then
             echo "No changes to commit."
