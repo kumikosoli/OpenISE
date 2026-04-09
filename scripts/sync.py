@@ -16,6 +16,8 @@ FILES_JSON = Path("data/files.json")
 RAW_BASE_URL = (
     "https://raw.githubusercontent.com/Timlin15/sysu-ise-course-materials/main"
 )
+GHFAST_PREFIX = "https://ghfast.top/"
+GITHUB_BLOB_BASE = "https://github.com"
 SKIP_NAMES = {".git", ".github", ".gitignore", ".DS_Store", "__pycache__"}
 DEFAULT_MAJOR_KEYWORDS = ("智能科学与技术", "智慧交通")
 SPECIAL_TOP_LEVEL_DIRS = ("大一公共课程", "往届课程")
@@ -73,19 +75,7 @@ FILETREE_SHORTCODE = """{{- $path := .Get "path" -}}
     .course-filetree-title {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
       min-width: 0;
-    }
-    .course-filetree-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 0.9rem;
-      color: var(--ft-accent);
-      background: var(--ft-accent-soft);
-      flex-shrink: 0;
     }
     .course-filetree-title strong {
       display: block;
@@ -268,16 +258,11 @@ FILETREE_SHORTCODE = """{{- $path := .Get "path" -}}
     }
   </style>
 
-  <div class="course-filetree-shell">
-    <div class="course-filetree-head">
-      <div class="course-filetree-title">
-        <span class="course-filetree-badge" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-            <path d="M4 7.5A2.5 2.5 0 0 1 6.5 5H10l2 2h5.5A2.5 2.5 0 0 1 20 9.5v8A2.5 2.5 0 0 1 17.5 20h-11A2.5 2.5 0 0 1 4 17.5v-10Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-          </svg>
-        </span>
+    <div class="course-filetree-shell">
+      <div class="course-filetree-head">
+        <div class="course-filetree-title">
         <div>
-          <strong>资源下载</strong>
+          <strong>课程资料</strong>
           <span>{{ $path }}</span>
         </div>
       </div>
@@ -347,18 +332,16 @@ FILETREE_PARTIAL = """{{- $node := .node -}}
       <div class="course-filetree-meta">{{ $entry.sizeHuman }}</div>
       <div class="course-filetree-meta">{{ $entry.mtime }}</div>
       <div class="course-filetree-actions">
-        <a class="course-filetree-action" href="{{ $entry.url }}" target="_blank" rel="noreferrer" aria-label="打开 {{ $entry.name }}">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
-            <path d="M14 5h5v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M10 14 19 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M19 14v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-        <a class="course-filetree-action" href="{{ $entry.url }}" download aria-label="下载 {{ $entry.name }}">
+        <a class="course-filetree-action" href="{{ $entry.mirrorUrl }}" target="_blank" rel="noreferrer" aria-label="加速下载 {{ $entry.name }}" title="加速下载">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
             <path d="M12 4v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
             <path d="m8 10 4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M5 19h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <a class="course-filetree-action" href="{{ $entry.repoUrl }}" target="_blank" rel="noreferrer" aria-label="跳转GitHub {{ $entry.name }}" title="跳转GitHub">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 .5C5.65.5.5 5.7.5 12.1c0 5.12 3.3 9.47 7.88 11 .58.11.79-.26.79-.57 0-.28-.01-1.2-.02-2.17-3.2.71-3.88-1.38-3.88-1.38-.52-1.35-1.28-1.7-1.28-1.7-1.05-.73.08-.72.08-.72 1.16.08 1.77 1.21 1.77 1.21 1.03 1.8 2.7 1.28 3.36.98.1-.76.4-1.28.73-1.58-2.55-.3-5.23-1.3-5.23-5.78 0-1.28.45-2.32 1.2-3.14-.12-.3-.52-1.52.11-3.17 0 0 .98-.32 3.2 1.2a10.9 10.9 0 0 1 5.82 0c2.22-1.52 3.2-1.2 3.2-1.2.63 1.65.23 2.87.11 3.17.75.82 1.2 1.86 1.2 3.14 0 4.49-2.69 5.48-5.25 5.77.41.36.78 1.08.78 2.19 0 1.58-.01 2.85-.01 3.24 0 .31.21.69.8.57A11.62 11.62 0 0 0 23.5 12.1C23.5 5.7 18.35.5 12 .5Z"/>
           </svg>
         </a>
       </div>
@@ -779,7 +762,13 @@ def resolve_base_url(
     return RAW_BASE_URL
 
 
-def build_file_tree(directory: Path, source_root: Path, base_url: str) -> dict[str, Any]:
+def build_file_tree(
+    directory: Path,
+    source_root: Path,
+    base_url: str,
+    github_repo: str,
+    branch: str,
+) -> dict[str, Any]:
     tree: dict[str, Any] = {}
     for child in sorted(directory.iterdir(), key=lambda item: (item.is_file(), item.name)):
         if should_skip(child, source_root):
@@ -789,16 +778,19 @@ def build_file_tree(directory: Path, source_root: Path, base_url: str) -> dict[s
                 continue
             relative_path = child.relative_to(source_root).as_posix()
             stat = child.stat()
+            raw_url = f"{base_url.rstrip('/')}/{relative_path}"
             tree[child.name] = {
                 "_type": "file",
                 "name": child.name,
                 "size": stat.st_size,
                 "sizeHuman": human_size(stat.st_size),
                 "mtime": dt.datetime.fromtimestamp(stat.st_mtime).strftime("%Y/%m/%d"),
-                "url": f"{base_url.rstrip('/')}/{relative_path}",
+                "url": raw_url,
+                "mirrorUrl": f"{GHFAST_PREFIX}{raw_url}",
+                "repoUrl": f"{GITHUB_BLOB_BASE}/{github_repo}/blob/{branch}/{relative_path}",
             }
         elif child.is_dir():
-            subtree = build_file_tree(child, source_root, base_url)
+            subtree = build_file_tree(child, source_root, base_url, github_repo, branch)
             tree[child.name] = {"_type": "folder", "_children": subtree}
     return tree
 
@@ -810,6 +802,7 @@ def find_course_dirs(semester_dir: Path, source_root: Path) -> list[Path]:
 def write_course_page(
     content_root: Path,
     target_path: Path,
+    target_url: str,
     course_dir: Path,
     source_root: Path,
 ) -> str:
@@ -823,7 +816,7 @@ def write_course_page(
         f'{{{{< filetree path="{course_rel}" >}}}}'
     )
     course_frontmatter: dict[str, Any] = {
-        "url": "/" + target_path.as_posix().strip("/") + "/"
+        "url": target_url
     }
     if course_weight is not None:
         course_frontmatter["weight"] = course_weight
@@ -878,7 +871,12 @@ def restore_root_index(target_root: Path, preserved_root_index: str | None) -> N
 
 
 def generate_specialized_content(
-    source_root: Path, target_root: Path, base_url: str, major_keywords: tuple[str, ...]
+    source_root: Path,
+    target_root: Path,
+    base_url: str,
+    github_repo: str,
+    branch: str,
+    major_keywords: tuple[str, ...],
 ) -> dict[str, Any]:
     files_index: dict[str, Any] = {}
     content_root = target_root / "content/doc"
@@ -932,10 +930,13 @@ def generate_specialized_content(
                     course_rel = write_course_page(
                         content_root,
                         Path(major_dir.name) / semester_dir.name / f"{course_dir.name}.md",
+                        f"/doc/{major_dir.name}/{semester_dir.name}/{course_dir.name}/",
                         course_dir,
                         source_root,
                     )
-                    files_index[course_rel] = build_file_tree(course_dir, source_root, base_url)
+                    files_index[course_rel] = build_file_tree(
+                        course_dir, source_root, base_url, github_repo, branch
+                    )
             continue
 
         course_dirs = find_course_dirs(major_dir, source_root)
@@ -955,10 +956,13 @@ def generate_specialized_content(
             course_rel = write_course_page(
                 content_root,
                 Path(major_dir.name) / f"{course_dir.name}.md",
+                f"/doc/{major_dir.name}/{course_dir.name}/",
                 course_dir,
                 source_root,
             )
-            files_index[course_rel] = build_file_tree(course_dir, source_root, base_url)
+            files_index[course_rel] = build_file_tree(
+                course_dir, source_root, base_url, github_repo, branch
+            )
 
     return files_index
 
@@ -1046,11 +1050,13 @@ def main() -> int:
     source_root = args.source.resolve()
     target_root = args.target.resolve()
     major_keywords = tuple(args.major_keywords or DEFAULT_MAJOR_KEYWORDS)
+    github_repo = resolve_repository(source_root, args.repo) or "Timlin15/sysu-ise-course-materials"
     base_url = resolve_base_url(source_root, args.base_url, args.repo, args.branch)
 
     LOGGER.info("Source: %s", source_root)
     LOGGER.info("Target: %s", target_root)
     LOGGER.info("Allowed majors: %s", ", ".join(major_keywords))
+    LOGGER.info("GitHub repo: %s", github_repo)
     LOGGER.info("Raw base URL: %s", base_url)
     validate_paths(source_root, target_root)
 
@@ -1063,7 +1069,7 @@ def main() -> int:
     restore_root_index(target_root, preserved_root_index)
     sync_temp_root_docs(source_root, content_root)
     files_index = generate_specialized_content(
-        source_root, target_root, base_url, major_keywords
+        source_root, target_root, base_url, github_repo, args.branch, major_keywords
     )
     write_files_json(target_root, files_index)
     write_openise_support_files(target_root)
