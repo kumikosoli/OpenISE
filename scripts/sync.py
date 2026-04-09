@@ -19,6 +19,7 @@ RAW_BASE_URL = (
 SKIP_NAMES = {".git", ".github", ".gitignore", ".DS_Store", "__pycache__"}
 DEFAULT_MAJOR_KEYWORDS = ("智能科学与技术", "智慧交通")
 SPECIAL_TOP_LEVEL_DIRS = ("大一公共课程", "往届课程")
+TEMP_ROOT_DOC_FILES = ("全部课程复习策略整理.md",)
 SEMESTER_PATTERN = re.compile(
     r"(大一|大二|大三|大四|大五|秋|春|上|下|学期|semester|term)", re.IGNORECASE
 )
@@ -829,6 +830,28 @@ def write_course_page(
     return course_rel
 
 
+def sync_temp_root_docs(source_root: Path, content_root: Path) -> None:
+    for filename in TEMP_ROOT_DOC_FILES:
+        source_file = source_root / filename
+        if not source_file.exists():
+            LOGGER.info("Temporary root doc not found, skipping: %s", source_file)
+            continue
+
+        text = source_file.read_text(encoding="utf-8")
+        frontmatter, body = parse_frontmatter_and_body(text)
+        title = (
+            frontmatter.get("title")
+            or extract_first_h1(body)
+            or source_file.stem
+        )
+        write_markdown(
+            content_root / source_file.name,
+            title,
+            body,
+            extra_frontmatter={"url": f"/doc/{source_file.stem}/"},
+        )
+
+
 def preserve_root_index(target_root: Path) -> str | None:
     root_index = target_root / ROOT_INDEX
     if not root_index.exists():
@@ -1029,6 +1052,7 @@ def main() -> int:
         LOGGER.info("Removed %s", content_root)
     content_root.mkdir(parents=True, exist_ok=True)
     restore_root_index(target_root, preserved_root_index)
+    sync_temp_root_docs(source_root, content_root)
     files_index = generate_specialized_content(
         source_root, target_root, base_url, major_keywords
     )
