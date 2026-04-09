@@ -713,11 +713,18 @@ def write_markdown(
     LOGGER.info("Wrote %s", target_file)
 
 
-def render_cards(course_dirs: list[Path]) -> str:
+def render_cards(item_dirs: list[Path]) -> str:
     lines = ["{{< cards >}}"]
-    for course_dir in course_dirs:
-        title = resolve_title(course_dir).replace('"', '\\"')
-        slug = course_dir.name.replace('"', '\\"')
+    sorted_items = sorted(
+        item_dirs,
+        key=lambda item: (
+            extract_sort_weight(item.name) if extract_sort_weight(item.name) is not None else 10_000,
+            item.name,
+        ),
+    )
+    for item_dir in sorted_items:
+        title = resolve_title(item_dir).replace('"', '\\"')
+        slug = item_dir.name.replace('"', '\\"')
         lines.append(f'  {{{{< card link="{slug}" title="{title}" >}}}}')
     lines.append("{{< /cards >}}")
     return "\n".join(lines)
@@ -891,10 +898,12 @@ def generate_specialized_content(
         major_frontmatter: dict[str, Any] = {"url": f"/doc/{major_dir.name}/"}
         if major_weight is not None:
             major_frontmatter["weight"] = major_weight
+        major_cards_block = render_cards(semester_dirs) if semester_dirs else None
         write_markdown(
             content_root / major_dir.name / "_index.md",
             major_title,
             major_body,
+            major_cards_block,
             extra_frontmatter=major_frontmatter,
         )
 
