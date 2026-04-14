@@ -1,0 +1,39 @@
+% filepath: c:\Users\Xiao\Desktop\人工智能编程语言报告\dijkstra_flowchart.tex
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+
+\begin{document}
+    \thispagestyle{empty}
+    % Flowchart 节点样式
+    \tikzstyle{startstop} = [rectangle, rounded corners, minimum width=2cm, minimum height=1cm, text centered, draw=black, fill=red!40]
+    \tikzstyle{process}   = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=yellow!50]
+    \tikzstyle{decision}  = [diamond, aspect=2, text centered, draw=black, fill=green!30]
+    \tikzstyle{arrow}     = [->,>=stealth]
+
+    \begin{tikzpicture}[node distance=2cm]
+        % 节点定义
+        \node (start) [startstop] {Start};
+        \node (init) [process, below of=start] {Initialize:\\
+            $dist[]=INF$, $dist[src]=0$\\
+            $visited[]=\mathrm{False}$};
+        \node (chk) [decision, below of=init, yshift=-0.5cm] {Unvisited nodes exist?};
+        \node (select) [process, left of=chk, xshift=-5cm] {Select node $u$:\\
+            $u=\min\{dist[i]\ |\ i \notin visited\}$};
+        \node (update) [process, below of=chk, yshift=-0.5cm] {For each neighbor $v$ of $u$: \\
+            \quad If $dist[u]+w(u,v) < dist[v]$,\\
+            \quad then update $dist[v]$};
+        \node (visit) [process, below of=update, yshift=-0.5cm] {Mark $u$ as visited};
+        \node (end) [startstop, right of=chk, xshift=5cm] {End};
+
+        % 连接各节点
+        \draw [arrow] (start) -- (init);
+        \draw [arrow] (init) -- (chk);
+        \draw [arrow] (chk.west) -- node [midway, above] {Yes} (select.east);
+        \draw [arrow] (select.south) -- ++(0,-1cm) -| (update.west);
+        \draw [arrow] (update) -- (visit);
+        \draw [arrow] (visit) -- (chk);
+        \draw [arrow] (chk.east) -- node [midway, above] {No} (end);
+    \end{tikzpicture}
+
+\end{document}
