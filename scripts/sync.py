@@ -1002,7 +1002,11 @@ def write_openise_support_files(target_root: Path) -> None:
     shortcode_path.write_text(FILETREE_SHORTCODE, encoding="utf-8")
     partial_path.write_text(FILETREE_PARTIAL, encoding="utf-8")
     icon_partial_path.write_text(FILETREE_ICON_PARTIAL, encoding="utf-8")
-    head_end_path.write_text(HEAD_END_PARTIAL, encoding="utf-8")
+    if not head_end_path.exists():
+        head_end_path.write_text(HEAD_END_PARTIAL, encoding="utf-8")
+        LOGGER.info("Wrote %s", head_end_path)
+    else:
+        LOGGER.info("Preserved existing %s", head_end_path)
     custom_css_path.write_text(CUSTOM_CSS, encoding="utf-8")
     doc_list_path.write_text(DOC_LIST_TEMPLATE, encoding="utf-8")
     doc_single_path.write_text(DOC_SINGLE_TEMPLATE, encoding="utf-8")
